@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "抖音数据看板",
+  "version": "4.0.0",
+  "description": "无感采集抖音创作者公开视频数据，本地生成可视化看板，支持互动率分析与CSV导出，数据纯本地存储不上传。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "scripting",
+    "downloads",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.douyin.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.douyin.com/user/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "打开抖音数据面板"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["*://*.douyin.com/*"]
+    }
+  ]
+}

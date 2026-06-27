@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抖音账号总体监控看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 30px 40px; }
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header p { color: #a0aec0; font-size: 14px; }
+.nav-links { display:flex; gap:12px; margin-top:12px;}
+.nav-links a { color:#fff; text-decoration:none; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:6px; font-size:14px; transition:background 0.2s; }
+.nav-links a:hover { background:rgba(255,255,255,0.25); }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; padding: 24px 40px; }
+.stat-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; }
+.stat-card .number { font-size: 32px; font-weight: 700; color: #1a1a2e; }
+.stat-card .label { font-size: 13px; color: #718096; margin-top: 4px; }
+.stat-card .sub { font-size: 11px; color: #a0aec0; margin-top: 2px; }
+.content { padding: 0 40px 40px; max-width: 1600px; margin: 0 auto; }
+.section { margin-bottom: 28px; }
+.section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #2d3748; display: flex; align-items: center; gap: 8px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+.card-header { padding: 16px 20px; border-bottom: 1px solid #edf2f7; font-weight: 600; font-size: 15px; color: #2d3748; }
+.card-body { padding: 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f7fafc; padding: 10px 12px; text-align: left; font-weight: 600; color: #4a5568; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid #edf2f7; }
+tr:hover td { background: #f7fafc; }
+.rank-num { display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; font-size: 12px; font-weight: 700; background: #e2e8f0; color: #4a5568; }
+.rank-1 { background: #f6c23e; color: #fff; }
+.rank-2 { background: #a0aec0; color: #fff; }
+.rank-3 { background: #ed8936; color: #fff; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-item { background: #ebf4ff; color: #3182ce; padding: 6px 14px; border-radius: 16px; font-size: 13px; transition: transform 0.2s; }
+.tag-item:hover { transform: scale(1.05); background: #bee3f8; }
+.chart-container { position: relative; height: 300px; }
+.insight-box { background: linear-gradient(135deg, #fefcbf, #fef9e7); border-left: 4px solid #d69e2e; padding: 16px 20px; border-radius: 8px; font-size: 14px; line-height: 1.8; }
+.insight-box strong { color: #744210; }
+@media (max-width: 1024px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .content { padding: 0 16px 16px; } .header { padding: 20px; } .stats-row { padding: 16px; grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📊 抖音账号总体监控看板</h1>
+    <p>监控账号总数: 112 个 · 数据起止: 2024-01-22 至 2026-06-10 · 报告生成: 2026/6/10 19:05:44</p>
+    <div class="nav-links">
+        <a href="./leader_dashboards/王梦圆.html">王梦圆看板</a><a href="./leader_dashboards/王楚楚.html">王楚楚看板</a><a href="./leader_dashboards/洪碧瑶.html">洪碧瑶看板</a><a href="./leader_dashboards/梁景煜.html">梁景煜看板</a>
+    </div>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card">
+        <div class="number">112</div>
+        <div class="label">监控账号总数</div>
+        <div class="sub">活跃 111 / 空数据 1</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">1.4万</div>
+        <div class="label">总粉丝数</div>
+        <div class="sub">覆盖 13,716 人</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">3409</div>
+        <div class="label">总视频数</div>
+        <div class="sub">去重采集 3422 条</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">62.6万</div>
+        <div class="label">总点赞数</div>
+        <div class="sub">626,270 次</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">18,910</div>
+        <div class="label">总评论数</div>
+        <div class="sub">互动总计 645,180</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">188.5</div>
+        <div class="label">单条平均互动</div>
+        <div class="sub">点赞+评论 / 视频数</div>
+    </div>
+</div>
+
+<div class="content">
+
+<div class="section">
+    <div class="section-title">💡 核心洞察</div>
+    <div class="insight-box" id="insightBox"></div>
+</div>
+
+<div class="section">
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-header">🏆 粉丝数 TOP 10</div>
+            <div class="card-body" style="padding:0">
+                <table>
+                    <thead><tr><th>#</th><th>账号</th><th>粉丝</th><th>视频</th><th>点赞</th></tr></thead>
+                    <tbody id="followersRank"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">🔥 点赞数 TOP 10</div>
+            <div class="card-body" style="padding:0">
+                <table>
+                    <thead><tr><th>#</th><th>账号</th><th>点赞</th><th>粉丝</th><th>评论</th></tr></thead>
+                    <tbody id="likesRank"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">📹 高产账号 TOP 10</div>
+            <div class="card-body" style="padding:0">
+                <table>
+                    <thead><tr><th>#</th><th>账号</th><th>视频数</th><th>粉丝</th><th>点赞</th></tr></thead>
+                    <tbody id="videosRank"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-header">📈 粉丝数分布</div>
+            <div class="card-body">
+                <div class="chart-container"><canvas id="distChart"></canvas></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">🎬 视频类型分布</div>
+            <div class="card-body">
+                <div class="chart-container"><canvas id="typeChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-header">📊 账号粉丝数排行 TOP 15</div>
+            <div class="card-body">
+                <div class="chart-container"><canvas id="barChart"></canvas></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">⚡ 互动率排行 TOP 15</div>
+            <div class="card-body">
+                <div class="chart-container"><canvas id="engagementChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <div class="card-header">🏷️ 热门话题标签 TOP 30</div>
+        <div class="card-body">
+            <div class="tag-cloud" id="tagCloud"></div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <div class="card-header">📋 所有账号数据总表（按粉丝数排序）</div>
+        <div class="card-body" style="padding:0; overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>负责人</th>
+                        <th>账号名称</th>
+                        <th>粉丝数</th>
+                        <th>视频数</th>
+                        <th>总点赞</th>
+                        <th>总评论</th>
+                        <th>互动率</th>
+                    </tr>
+                </thead>
+                <tbody id="allAccountsTable"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+var DATA = {"totalAccounts":112,"activeAccounts":111,"inactiveAccounts":1,"totalFollowers":13716,"totalVideos":3409,"totalLikes":626270,"totalComments":18910,"totalEngagement":645180,"totalUniqueVideos":3422,"avgEngagementPerVideo":"188.5","earliestDate":"2024-01-22","latestDate":"2026-06-10","videoTypes":{"image_text":2502,"video":917,"live_replay":3},"topTags":[{"tag":"拾塑小蓝罐发泥","count":795},{"tag":"男生发型","count":511},{"tag":"热门","count":449},{"tag":"拾塑定型喷雾","count":402},{"tag":"拾塑蓝胖子发膜","count":368},{"tag":"发泥推荐","count":352},{"tag":"发泥","count":300},{"tag":"未来氧气刺梨果vc面膜","count":287},{"tag":"拾塑小蓝瓶定型喷雾","count":266},{"tag":"头发毛躁怎么变得柔顺光滑","count":263},{"tag":"创作者中心","count":223},{"tag":"细软塌","count":223},{"tag":"定型喷雾","count":221},{"tag":"毛躁头","count":207},{"tag":"护发养发","count":197},{"tag":"真实生活分享计划","count":184},{"tag":"防晒霜","count":175},{"tag":"美式前刺","count":169},{"tag":"护发","count":157},{"tag":"未来氧气vc面膜","count":157},{"tag":"护肤","count":153},{"tag":"聊天记录","count":151},{"tag":"男士发泥","count":142},{"tag":"男生造型","count":141},{"tag":"未来氧气防晒霜","count":140},{"tag":"发膜","count":138},{"tag":"面膜","count":137},{"tag":"平价发泥","count":136},{"tag":"创作者扶持计划","count":134},{"tag":"发型教程","count":132}],"byFollowers":[{"person":"王楚楚","name":"辣条公举～","followers":3302,"videos":193,"likes":37237,"comments":637},{"person":"王楚楚","name":"快乐奶茶店","followers":2284,"videos":160,"likes":141859,"comments":1297},{"person":"王楚楚","name":"泡芙小星球","followers":1344,"videos":76,"likes":39166,"comments":763},{"person":"罗永乐","name":"玉玉症患者","followers":1045,"videos":22,"likes":2107,"comments":29},{"person":"罗永乐","name":"排骨玉米汤","followers":1036,"videos":9,"likes":7805,"comments":10},{"person":"朱怡雯","name":"炭烤五花肉","followers":960,"videos":53,"likes":89005,"comments":1211},{"person":"李珊","name":"粉面馒头","followers":733,"videos":57,"likes":25957,"comments":595},{"person":"洪碧瑶","name":"蜡笔小宅","followers":244,"videos":17,"likes":19853,"comments":658},{"person":"洪碧瑶","name":"噜噜是我（高能量版）","followers":221,"videos":57,"likes":15128,"comments":483},{"person":"王楚楚","name":"女生发型日记","followers":186,"videos":41,"likes":19420,"comments":537},{"person":"洪碧瑶","name":"不知豆","followers":118,"videos":20,"likes":21349,"comments":208},{"person":"洪碧瑶","name":"Nanami_","followers":114,"videos":29,"likes":13693,"comments":466},{"person":"洪碧瑶","name":"空气炸锅西蓝花","followers":88,"videos":37,"likes":12544,"comments":445},{"person":"王梦圆","name":"烂番茄","followers":83,"videos":139,"likes":13161,"comments":3102},{"person":"张晨旭","name":"白舟","followers":78,"videos":0,"likes":8358,"comments":0},{"person":"陈星羽","name":"脑袋空空酱","followers":76,"videos":50,"likes":5784,"comments":259},{"person":"王梦圆","name":"word麻鸭","followers":67,"videos":17,"likes":2631,"comments":51},{"person":"张晨旭","name":"雾知","followers":66,"videos":18,"likes":3161,"comments":28},{"person":"罗永乐","name":"霸气苦茶子","followers":66,"videos":33,"likes":11935,"comments":183},{"person":"李珊","name":"土豆不吃西红柿","followers":64,"videos":62,"likes":24152,"comments":1044},{"person":"王楚楚","name":"小年糕","followers":64,"videos":25,"likes":5123,"comments":39},{"person":"罗永乐","name":"追求者无数","followers":58,"videos":44,"likes":1374,"comments":79},{"person":"王梦圆","name":"不吃晚饭","followers":49,"videos":59,"likes":6193,"comments":277},{"person":"张晨旭","name":"知雾","followers":48,"videos":47,"likes":3576,"comments":162},{"person":"王梦圆","name":"再睡亿分钟","followers":46,"videos":44,"likes":3073,"comments":159},{"person":"王楚楚","name":"芝士🧀","followers":45,"videos":68,"likes":6036,"comments":304},{"person":"洪碧瑶","name":"玛丽莲梦鼠","followers":42,"videos":19,"likes":4938,"comments":163},{"person":"罗永乐","name":"自律的潮男","followers":39,"videos":6,"likes":2762,"comments":4},{"person":"潘梦营","name":"筱星","followers":38,"videos":12,"likes":1616,"comments":17},{"person":"李珊","name":"睡眠羊kk","followers":37,"videos":109,"likes":1860,"comments":234},{"person":"洪碧瑶","name":"医学生小鱼（测评版）","followers":35,"videos":45,"likes":2137,"comments":252},{"person":"张晨旭","name":"遇川","followers":34,"videos":9,"likes":2879,"comments":24},{"person":"陈星羽","name":"超级无敌大开门","followers":34,"videos":64,"likes":4700,"comments":247},{"person":"罗永乐","name":"自律的潮男","followers":33,"videos":24,"likes":336,"comments":61},{"person":"王楚楚","name":"芋圆不打烊","followers":32,"videos":29,"likes":1975,"comments":110},{"person":"季朝娣","name":"好柿发生🍅","followers":31,"videos":12,"likes":879,"comments":1},{"person":"安惠靖","name":"半山归晚","followers":31,"videos":12,"likes":3359,"comments":13},{"person":"洪碧瑶","name":"鱼鱼吃不胖","followers":27,"videos":3,"likes":2362,"comments":2},{"person":"李珊","name":"剁椒土豆","followers":25,"videos":7,"likes":771,"comments":53},{"person":"王楚楚","name":"顺顺梨梨🍐","followers":25,"videos":6,"likes":1945,"comments":87},{"person":"罗永乐","name":"盖世汤圆","followers":24,"videos":21,"likes":1606,"comments":35},{"person":"潘梦营","name":"达不呦～","followers":23,"videos":25,"likes":3960,"comments":48},{"person":"陈一诺","name":"魚饼饼","followers":23,"videos":18,"likes":177,"comments":60},{"person":"安惠靖","name":"失去荔枝","followers":22,"videos":6,"likes":839,"comments":44},{"person":"朱一凡","name":"呜呜酱","followers":22,"videos":12,"likes":1340,"comments":72},{"person":"潘梦营","name":"不会读心术","followers":22,"videos":18,"likes":2702,"comments":190},{"person":"季朝娣","name":"金泡泡🫧","followers":21,"videos":13,"likes":1523,"comments":2},{"person":"朱怡雯","name":"skye","followers":21,"videos":30,"likes":799,"comments":163},{"person":"王梦圆","name":"失眠录","followers":21,"videos":27,"likes":1563,"comments":83},{"person":"王梦圆","name":"凉拖孩","followers":21,"videos":27,"likes":1226,"comments":55},{"person":"李珊","name":"别动我齐刘海","followers":19,"videos":80,"likes":2717,"comments":331},{"person":"潘梦营","name":"怎麻薯掉了","followers":19,"videos":47,"likes":3705,"comments":175},{"person":"朱怡雯","name":"哇咔咔噜噜","followers":18,"videos":54,"likes":314,"comments":56},{"person":"朱怡雯","name":"决斗别摸头","followers":17,"videos":30,"likes":385,"comments":81},{"person":"李珊","name":"啾啾小猪咪","followers":17,"videos":36,"likes":1247,"comments":42},{"person":"李珊","name":"醍醐灌饼","followers":17,"videos":43,"likes":869,"comments":125},{"person":"王楚楚","name":"一块香骨鸡","followers":17,"videos":29,"likes":484,"comments":133},{"person":"陈一诺","name":"香菜刺客","followers":17,"videos":27,"likes":630,"comments":36},{"person":"洪碧瑶","name":"奶芙小记","followers":16,"videos":2,"likes":1019,"comments":2},{"person":"朱一凡","name":"但愿人长久","followers":15,"videos":9,"likes":338,"comments":40},{"person":"张晨旭","name":"鲨鱼辣椒","followers":14,"videos":13,"likes":1542,"comments":23},{"person":"张晨旭","name":"遇川","followers":14,"videos":25,"likes":381,"comments":56},{"person":"朱怡雯","name":"抹有烦恼","followers":14,"videos":27,"likes":230,"comments":56},{"person":"李珊","name":"椰子烤肉","followers":14,"videos":20,"likes":369,"comments":53},{"person":"潘梦营","name":"挖掘宝藏的桃子","followers":14,"videos":17,"likes":1284,"comments":12},{"person":"陈星羽","name":"饼饼有礼","followers":14,"videos":49,"likes":252,"comments":75},{"person":"陈星羽","name":"蛋挞派","followers":14,"videos":62,"likes":1483,"comments":163},{"person":"潘梦营","name":"加冰七分糖","followers":13,"videos":21,"likes":1640,"comments":218},{"person":"张晨旭","name":"观月","followers":12,"videos":49,"likes":369,"comments":106},{"person":"潘梦营","name":"奶油收藏家","followers":12,"videos":12,"likes":393,"comments":12},{"person":"罗永乐","name":"霸气苦茶子","followers":12,"videos":16,"likes":343,"comments":19},{"person":"陈星羽","name":"可乐鸡翅","followers":12,"videos":26,"likes":2053,"comments":99},{"person":"张晨旭","name":"辣椒鲨鱼","followers":11,"videos":32,"likes":1355,"comments":124},{"person":"朱怡雯","name":"椰也椰好","followers":11,"videos":53,"likes":401,"comments":90},{"person":"李珊","name":"哈基米","followers":11,"videos":44,"likes":265,"comments":60},{"person":"洪碧瑶","name":"梨想生活","followers":11,"videos":1,"likes":1259,"comments":1},{"person":"罗永乐","name":"185黑腹男","followers":11,"videos":44,"likes":484,"comments":283},{"person":"陈星羽","name":"芝士没烦恼","followers":11,"videos":47,"likes":1044,"comments":114},{"person":"陈星羽","name":"烦恼退退退","followers":10,"videos":55,"likes":792,"comments":97},{"person":"安惠靖","name":"玉米泪先流","followers":9,"videos":26,"likes":321,"comments":26},{"person":"陈一诺","name":"麻辣公主","followers":9,"videos":18,"likes":834,"comments":70},{"person":"安惠靖","name":"和气生菜","followers":8,"videos":7,"likes":497,"comments":51},{"person":"张晨旭","name":"听风 观月","followers":8,"videos":18,"likes":1917,"comments":40},{"person":"朱怡雯","name":"青苹果","followers":8,"videos":2,"likes":16,"comments":1},{"person":"陈一诺","name":"荷包蛋","followers":8,"videos":42,"likes":208,"comments":75},{"person":"陈一诺","name":"吐司耶耶🍞","followers":7,"videos":38,"likes":77,"comments":55},{"person":"陈一诺","name":"螺蛳粉大王","followers":7,"videos":19,"likes":519,"comments":122},{"person":"洪碧瑶","name":"西瓜太郎","followers":6,"videos":38,"likes":429,"comments":39},{"person":"潘梦营","name":"小梨椰条","followers":6,"videos":32,"likes":71,"comments":32},{"person":"罗永乐","name":"玉玉症患者","followers":6,"videos":25,"likes":199,"comments":109},{"person":"安惠靖","name":"粥沫鱼块","followers":5,"videos":6,"likes":205,"comments":28},{"person":"季朝娣","name":"小樱拯救世界","followers":4,"videos":10,"likes":220,"comments":36},{"person":"季朝娣","name":"樱桃小完嘟子","followers":4,"videos":13,"likes":137,"comments":37},{"person":"张晨旭","name":"白舟","followers":4,"videos":36,"likes":328,"comments":84},{"person":"朱一凡","name":"萌萌兔","followers":4,"videos":8,"likes":110,"comments":25},{"person":"朱一凡","name":"青提涩","followers":4,"videos":12,"likes":129,"comments":19},{"person":"朱一凡","name":"红烧排骨","followers":4,"videos":7,"likes":69,"comments":16},{"person":"陈星羽","name":"卷卷薯条","followers":4,"videos":12,"likes":194,"comments":30},{"person":"季朝娣","name":"欧泡贝贝.","followers":3,"videos":11,"likes":118,"comments":33},{"person":"朱一凡","name":"周周","followers":3,"videos":7,"likes":14,"comments":7},{"person":"李珊","name":"蘑菇烤肉","followers":3,"videos":10,"likes":359,"comments":5},{"person":"潘梦营","name":"萌点怎么了","followers":3,"videos":20,"likes":432,"comments":93},{"person":"王梦圆","name":"一秒睡咯","followers":3,"videos":9,"likes":61,"comments":30},{"person":"季朝娣","name":"邪恶银渐层","followers":2,"videos":10,"likes":40,"comments":12},{"person":"安惠靖","name":"我们芝士葡萄朋友","followers":2,"videos":6,"likes":107,"comments":25},{"person":"洪碧瑶","name":"巧克巧","followers":2,"videos":23,"likes":2150,"comments":17},{"person":"王梦圆","name":"椰椰汁","followers":2,"videos":17,"likes":286,"comments":36},{"person":"安惠靖","name":"蒜你捣莓","followers":1,"videos":1,"likes":0,"comments":0},{"person":"洪碧瑶","name":"认真你就熟了","followers":1,"videos":6,"likes":12,"comments":0},{"person":"潘梦营","name":"不要打打鲨鲨","followers":1,"videos":10,"likes":65,"comments":8},{"person":"朱怡雯","name":"未命名","followers":0,"videos":0,"likes":0,"comments":0},{"person":"洪碧瑶","name":"没有面的面","followers":0,"videos":22,"likes":565,"comments":21}],"byLikes":[{"person":"王楚楚","name":"快乐奶茶店","followers":2284,"videos":160,"likes":141859,"comments":1297},{"person":"朱怡雯","name":"炭烤五花肉","followers":960,"videos":53,"likes":89005,"comments":1211},{"person":"王楚楚","name":"泡芙小星球","followers":1344,"videos":76,"likes":39166,"comments":763},{"person":"王楚楚","name":"辣条公举～","followers":3302,"videos":193,"likes":37237,"comments":637},{"person":"李珊","name":"粉面馒头","followers":733,"videos":57,"likes":25957,"comments":595},{"person":"李珊","name":"土豆不吃西红柿","followers":64,"videos":62,"likes":24152,"comments":1044},{"person":"洪碧瑶","name":"不知豆","followers":118,"videos":20,"likes":21349,"comments":208},{"person":"洪碧瑶","name":"蜡笔小宅","followers":244,"videos":17,"likes":19853,"comments":658},{"person":"王楚楚","name":"女生发型日记","followers":186,"videos":41,"likes":19420,"comments":537},{"person":"洪碧瑶","name":"噜噜是我（高能量版）","followers":221,"videos":57,"likes":15128,"comments":483},{"person":"洪碧瑶","name":"Nanami_","followers":114,"videos":29,"likes":13693,"comments":466},{"person":"王梦圆","name":"烂番茄","followers":83,"videos":139,"likes":13161,"comments":3102},{"person":"洪碧瑶","name":"空气炸锅西蓝花","followers":88,"videos":37,"likes":12544,"comments":445},{"person":"罗永乐","name":"霸气苦茶子","followers":66,"videos":33,"likes":11935,"comments":183},{"person":"张晨旭","name":"白舟","followers":78,"videos":0,"likes":8358,"comments":0},{"person":"罗永乐","name":"排骨玉米汤","followers":1036,"videos":9,"likes":7805,"comments":10},{"person":"王梦圆","name":"不吃晚饭","followers":49,"videos":59,"likes":6193,"comments":277},{"person":"王楚楚","name":"芝士🧀","followers":45,"videos":68,"likes":6036,"comments":304},{"person":"陈星羽","name":"脑袋空空酱","followers":76,"videos":50,"likes":5784,"comments":259},{"person":"王楚楚","name":"小年糕","followers":64,"videos":25,"likes":5123,"comments":39},{"person":"洪碧瑶","name":"玛丽莲梦鼠","followers":42,"videos":19,"likes":4938,"comments":163},{"person":"陈星羽","name":"超级无敌大开门","followers":34,"videos":64,"likes":4700,"comments":247},{"person":"潘梦营","name":"达不呦～","followers":23,"videos":25,"likes":3960,"comments":48},{"person":"潘梦营","name":"怎麻薯掉了","followers":19,"videos":47,"likes":3705,"comments":175},{"person":"张晨旭","name":"知雾","followers":48,"videos":47,"likes":3576,"comments":162},{"person":"安惠靖","name":"半山归晚","followers":31,"videos":12,"likes":3359,"comments":13},{"person":"张晨旭","name":"雾知","followers":66,"videos":18,"likes":3161,"comments":28},{"person":"王梦圆","name":"再睡亿分钟","followers":46,"videos":44,"likes":3073,"comments":159},{"person":"张晨旭","name":"遇川","followers":34,"videos":9,"likes":2879,"comments":24},{"person":"罗永乐","name":"自律的潮男","followers":39,"videos":6,"likes":2762,"comments":4},{"person":"李珊","name":"别动我齐刘海","followers":19,"videos":80,"likes":2717,"comments":331},{"person":"潘梦营","name":"不会读心术","followers":22,"videos":18,"likes":2702,"comments":190},{"person":"王梦圆","name":"word麻鸭","followers":67,"videos":17,"likes":2631,"comments":51},{"person":"洪碧瑶","name":"鱼鱼吃不胖","followers":27,"videos":3,"likes":2362,"comments":2},{"person":"洪碧瑶","name":"巧克巧","followers":2,"videos":23,"likes":2150,"comments":17},{"person":"洪碧瑶","name":"医学生小鱼（测评版）","followers":35,"videos":45,"likes":2137,"comments":252},{"person":"罗永乐","name":"玉玉症患者","followers":1045,"videos":22,"likes":2107,"comments":29},{"person":"陈星羽","name":"可乐鸡翅","followers":12,"videos":26,"likes":2053,"comments":99},{"person":"王楚楚","name":"芋圆不打烊","followers":32,"videos":29,"likes":1975,"comments":110},{"person":"王楚楚","name":"顺顺梨梨🍐","followers":25,"videos":6,"likes":1945,"comments":87},{"person":"张晨旭","name":"听风 观月","followers":8,"videos":18,"likes":1917,"comments":40},{"person":"李珊","name":"睡眠羊kk","followers":37,"videos":109,"likes":1860,"comments":234},{"person":"潘梦营","name":"加冰七分糖","followers":13,"videos":21,"likes":1640,"comments":218},{"person":"潘梦营","name":"筱星","followers":38,"videos":12,"likes":1616,"comments":17},{"person":"罗永乐","name":"盖世汤圆","followers":24,"videos":21,"likes":1606,"comments":35},{"person":"王梦圆","name":"失眠录","followers":21,"videos":27,"likes":1563,"comments":83},{"person":"张晨旭","name":"鲨鱼辣椒","followers":14,"videos":13,"likes":1542,"comments":23},{"person":"季朝娣","name":"金泡泡🫧","followers":21,"videos":13,"likes":1523,"comments":2},{"person":"陈星羽","name":"蛋挞派","followers":14,"videos":62,"likes":1483,"comments":163},{"person":"罗永乐","name":"追求者无数","followers":58,"videos":44,"likes":1374,"comments":79},{"person":"张晨旭","name":"辣椒鲨鱼","followers":11,"videos":32,"likes":1355,"comments":124},{"person":"朱一凡","name":"呜呜酱","followers":22,"videos":12,"likes":1340,"comments":72},{"person":"潘梦营","name":"挖掘宝藏的桃子","followers":14,"videos":17,"likes":1284,"comments":12},{"person":"洪碧瑶","name":"梨想生活","followers":11,"videos":1,"likes":1259,"comments":1},{"person":"李珊","name":"啾啾小猪咪","followers":17,"videos":36,"likes":1247,"comments":42},{"person":"王梦圆","name":"凉拖孩","followers":21,"videos":27,"likes":1226,"comments":55},{"person":"陈星羽","name":"芝士没烦恼","followers":11,"videos":47,"likes":1044,"comments":114},{"person":"洪碧瑶","name":"奶芙小记","followers":16,"videos":2,"likes":1019,"comments":2},{"person":"季朝娣","name":"好柿发生🍅","followers":31,"videos":12,"likes":879,"comments":1},{"person":"李珊","name":"醍醐灌饼","followers":17,"videos":43,"likes":869,"comments":125},{"person":"安惠靖","name":"失去荔枝","followers":22,"videos":6,"likes":839,"comments":44},{"person":"陈一诺","name":"麻辣公主","followers":9,"videos":18,"likes":834,"comments":70},{"person":"朱怡雯","name":"skye","followers":21,"videos":30,"likes":799,"comments":163},{"person":"陈星羽","name":"烦恼退退退","followers":10,"videos":55,"likes":792,"comments":97},{"person":"李珊","name":"剁椒土豆","followers":25,"videos":7,"likes":771,"comments":53},{"person":"陈一诺","name":"香菜刺客","followers":17,"videos":27,"likes":630,"comments":36},{"person":"洪碧瑶","name":"没有面的面","followers":0,"videos":22,"likes":565,"comments":21},{"person":"陈一诺","name":"螺蛳粉大王","followers":7,"videos":19,"likes":519,"comments":122},{"person":"安惠靖","name":"和气生菜","followers":8,"videos":7,"likes":497,"comments":51},{"person":"王楚楚","name":"一块香骨鸡","followers":17,"videos":29,"likes":484,"comments":133},{"person":"罗永乐","name":"185黑腹男","followers":11,"videos":44,"likes":484,"comments":283},{"person":"潘梦营","name":"萌点怎么了","followers":3,"videos":20,"likes":432,"comments":93},{"person":"洪碧瑶","name":"西瓜太郎","followers":6,"videos":38,"likes":429,"comments":39},{"person":"朱怡雯","name":"椰也椰好","followers":11,"videos":53,"likes":401,"comments":90},{"person":"潘梦营","name":"奶油收藏家","followers":12,"videos":12,"likes":393,"comments":12},{"person":"朱怡雯","name":"决斗别摸头","followers":17,"videos":30,"likes":385,"comments":81},{"person":"张晨旭","name":"遇川","followers":14,"videos":25,"likes":381,"comments":56},{"person":"张晨旭","name":"观月","followers":12,"videos":49,"likes":369,"comments":106},{"person":"李珊","name":"椰子烤肉","followers":14,"videos":20,"likes":369,"comments":53},{"person":"李珊","name":"蘑菇烤肉","followers":3,"videos":10,"likes":359,"comments":5},{"person":"罗永乐","name":"霸气苦茶子","followers":12,"videos":16,"likes":343,"comments":19},{"person":"朱一凡","name":"但愿人长久","followers":15,"videos":9,"likes":338,"comments":40},{"person":"罗永乐","name":"自律的潮男","followers":33,"videos":24,"likes":336,"comments":61},{"person":"张晨旭","name":"白舟","followers":4,"videos":36,"likes":328,"comments":84},{"person":"安惠靖","name":"玉米泪先流","followers":9,"videos":26,"likes":321,"comments":26},{"person":"朱怡雯","name":"哇咔咔噜噜","followers":18,"videos":54,"likes":314,"comments":56},{"person":"王梦圆","name":"椰椰汁","followers":2,"videos":17,"likes":286,"comments":36},{"person":"李珊","name":"哈基米","followers":11,"videos":44,"likes":265,"comments":60},{"person":"陈星羽","name":"饼饼有礼","followers":14,"videos":49,"likes":252,"comments":75},{"person":"朱怡雯","name":"抹有烦恼","followers":14,"videos":27,"likes":230,"comments":56},{"person":"季朝娣","name":"小樱拯救世界","followers":4,"videos":10,"likes":220,"comments":36},{"person":"陈一诺","name":"荷包蛋","followers":8,"videos":42,"likes":208,"comments":75},{"person":"安惠靖","name":"粥沫鱼块","followers":5,"videos":6,"likes":205,"comments":28},{"person":"罗永乐","name":"玉玉症患者","followers":6,"videos":25,"likes":199,"comments":109},{"person":"陈星羽","name":"卷卷薯条","followers":4,"videos":12,"likes":194,"comments":30},{"person":"陈一诺","name":"魚饼饼","followers":23,"videos":18,"likes":177,"comments":60},{"person":"季朝娣","name":"樱桃小完嘟子","followers":4,"videos":13,"likes":137,"comments":37},{"person":"朱一凡","name":"青提涩","followers":4,"videos":12,"likes":129,"comments":19},{"person":"季朝娣","name":"欧泡贝贝.","followers":3,"videos":11,"likes":118,"comments":33},{"person":"朱一凡","name":"萌萌兔","followers":4,"videos":8,"likes":110,"comments":25},{"person":"安惠靖","name":"我们芝士葡萄朋友","followers":2,"videos":6,"likes":107,"comments":25},{"person":"陈一诺","name":"吐司耶耶🍞","followers":7,"videos":38,"likes":77,"comments":55},{"person":"潘梦营","name":"小梨椰条","followers":6,"videos":32,"likes":71,"comments":32},{"person":"朱一凡","name":"红烧排骨","followers":4,"videos":7,"likes":69,"comments":16},{"person":"潘梦营","name":"不要打打鲨鲨","followers":1,"videos":10,"likes":65,"comments":8},{"person":"王梦圆","name":"一秒睡咯","followers":3,"videos":9,"likes":61,"comments":30},{"person":"季朝娣","name":"邪恶银渐层","followers":2,"videos":10,"likes":40,"comments":12},{"person":"朱怡雯","name":"青苹果","followers":8,"videos":2,"likes":16,"comments":1},{"person":"朱一凡","name":"周周","followers":3,"videos":7,"likes":14,"comments":7},{"person":"洪碧瑶","name":"认真你就熟了","followers":1,"videos":6,"likes":12,"comments":0},{"person":"安惠靖","name":"蒜你捣莓","followers":1,"videos":1,"likes":0,"comments":0},{"person":"朱怡雯","name":"未命名","followers":0,"videos":0,"likes":0,"comments":0}],"byVideos":[{"person":"王楚楚","name":"辣条公举～","followers":3302,"videos":193,"likes":37237,"comments":637},{"person":"王楚楚","name":"快乐奶茶店","followers":2284,"videos":160,"likes":141859,"comments":1297},{"person":"王梦圆","name":"烂番茄","followers":83,"videos":139,"likes":13161,"comments":3102},{"person":"李珊","name":"睡眠羊kk","followers":37,"videos":109,"likes":1860,"comments":234},{"person":"李珊","name":"别动我齐刘海","followers":19,"videos":80,"likes":2717,"comments":331},{"person":"王楚楚","name":"泡芙小星球","followers":1344,"videos":76,"likes":39166,"comments":763},{"person":"王楚楚","name":"芝士🧀","followers":45,"videos":68,"likes":6036,"comments":304},{"person":"陈星羽","name":"超级无敌大开门","followers":34,"videos":64,"likes":4700,"comments":247},{"person":"李珊","name":"土豆不吃西红柿","followers":64,"videos":62,"likes":24152,"comments":1044},{"person":"陈星羽","name":"蛋挞派","followers":14,"videos":62,"likes":1483,"comments":163},{"person":"王梦圆","name":"不吃晚饭","followers":49,"videos":59,"likes":6193,"comments":277},{"person":"李珊","name":"粉面馒头","followers":733,"videos":57,"likes":25957,"comments":595},{"person":"洪碧瑶","name":"噜噜是我（高能量版）","followers":221,"videos":57,"likes":15128,"comments":483},{"person":"陈星羽","name":"烦恼退退退","followers":10,"videos":55,"likes":792,"comments":97},{"person":"朱怡雯","name":"哇咔咔噜噜","followers":18,"videos":54,"likes":314,"comments":56},{"person":"朱怡雯","name":"炭烤五花肉","followers":960,"videos":53,"likes":89005,"comments":1211},{"person":"朱怡雯","name":"椰也椰好","followers":11,"videos":53,"likes":401,"comments":90},{"person":"陈星羽","name":"脑袋空空酱","followers":76,"videos":50,"likes":5784,"comments":259},{"person":"张晨旭","name":"观月","followers":12,"videos":49,"likes":369,"comments":106},{"person":"陈星羽","name":"饼饼有礼","followers":14,"videos":49,"likes":252,"comments":75},{"person":"张晨旭","name":"知雾","followers":48,"videos":47,"likes":3576,"comments":162},{"person":"潘梦营","name":"怎麻薯掉了","followers":19,"videos":47,"likes":3705,"comments":175},{"person":"陈星羽","name":"芝士没烦恼","followers":11,"videos":47,"likes":1044,"comments":114},{"person":"洪碧瑶","name":"医学生小鱼（测评版）","followers":35,"videos":45,"likes":2137,"comments":252},{"person":"李珊","name":"哈基米","followers":11,"videos":44,"likes":265,"comments":60},{"person":"王梦圆","name":"再睡亿分钟","followers":46,"videos":44,"likes":3073,"comments":159},{"person":"罗永乐","name":"追求者无数","followers":58,"videos":44,"likes":1374,"comments":79},{"person":"罗永乐","name":"185黑腹男","followers":11,"videos":44,"likes":484,"comments":283},{"person":"李珊","name":"醍醐灌饼","followers":17,"videos":43,"likes":869,"comments":125},{"person":"陈一诺","name":"荷包蛋","followers":8,"videos":42,"likes":208,"comments":75},{"person":"王楚楚","name":"女生发型日记","followers":186,"videos":41,"likes":19420,"comments":537},{"person":"洪碧瑶","name":"西瓜太郎","followers":6,"videos":38,"likes":429,"comments":39},{"person":"陈一诺","name":"吐司耶耶🍞","followers":7,"videos":38,"likes":77,"comments":55},{"person":"洪碧瑶","name":"空气炸锅西蓝花","followers":88,"videos":37,"likes":12544,"comments":445},{"person":"张晨旭","name":"白舟","followers":4,"videos":36,"likes":328,"comments":84},{"person":"李珊","name":"啾啾小猪咪","followers":17,"videos":36,"likes":1247,"comments":42},{"person":"罗永乐","name":"霸气苦茶子","followers":66,"videos":33,"likes":11935,"comments":183},{"person":"张晨旭","name":"辣椒鲨鱼","followers":11,"videos":32,"likes":1355,"comments":124},{"person":"潘梦营","name":"小梨椰条","followers":6,"videos":32,"likes":71,"comments":32},{"person":"朱怡雯","name":"skye","followers":21,"videos":30,"likes":799,"comments":163},{"person":"朱怡雯","name":"决斗别摸头","followers":17,"videos":30,"likes":385,"comments":81},{"person":"洪碧瑶","name":"Nanami_","followers":114,"videos":29,"likes":13693,"comments":466},{"person":"王楚楚","name":"芋圆不打烊","followers":32,"videos":29,"likes":1975,"comments":110},{"person":"王楚楚","name":"一块香骨鸡","followers":17,"videos":29,"likes":484,"comments":133},{"person":"朱怡雯","name":"抹有烦恼","followers":14,"videos":27,"likes":230,"comments":56},{"person":"王梦圆","name":"失眠录","followers":21,"videos":27,"likes":1563,"comments":83},{"person":"王梦圆","name":"凉拖孩","followers":21,"videos":27,"likes":1226,"comments":55},{"person":"陈一诺","name":"香菜刺客","followers":17,"videos":27,"likes":630,"comments":36},{"person":"安惠靖","name":"玉米泪先流","followers":9,"videos":26,"likes":321,"comments":26},{"person":"陈星羽","name":"可乐鸡翅","followers":12,"videos":26,"likes":2053,"comments":99},{"person":"张晨旭","name":"遇川","followers":14,"videos":25,"likes":381,"comments":56},{"person":"潘梦营","name":"达不呦～","followers":23,"videos":25,"likes":3960,"comments":48},{"person":"王楚楚","name":"小年糕","followers":64,"videos":25,"likes":5123,"comments":39},{"person":"罗永乐","name":"玉玉症患者","followers":6,"videos":25,"likes":199,"comments":109},{"person":"罗永乐","name":"自律的潮男","followers":33,"videos":24,"likes":336,"comments":61},{"person":"洪碧瑶","name":"巧克巧","followers":2,"videos":23,"likes":2150,"comments":17},{"person":"洪碧瑶","name":"没有面的面","followers":0,"videos":22,"likes":565,"comments":21},{"person":"罗永乐","name":"玉玉症患者","followers":1045,"videos":22,"likes":2107,"comments":29},{"person":"潘梦营","name":"加冰七分糖","followers":13,"videos":21,"likes":1640,"comments":218},{"person":"罗永乐","name":"盖世汤圆","followers":24,"videos":21,"likes":1606,"comments":35},{"person":"李珊","name":"椰子烤肉","followers":14,"videos":20,"likes":369,"comments":53},{"person":"洪碧瑶","name":"不知豆","followers":118,"videos":20,"likes":21349,"comments":208},{"person":"潘梦营","name":"萌点怎么了","followers":3,"videos":20,"likes":432,"comments":93},{"person":"洪碧瑶","name":"玛丽莲梦鼠","followers":42,"videos":19,"likes":4938,"comments":163},{"person":"陈一诺","name":"螺蛳粉大王","followers":7,"videos":19,"likes":519,"comments":122},{"person":"张晨旭","name":"雾知","followers":66,"videos":18,"likes":3161,"comments":28},{"person":"张晨旭","name":"听风 观月","followers":8,"videos":18,"likes":1917,"comments":40},{"person":"潘梦营","name":"不会读心术","followers":22,"videos":18,"likes":2702,"comments":190},{"person":"陈一诺","name":"魚饼饼","followers":23,"videos":18,"likes":177,"comments":60},{"person":"陈一诺","name":"麻辣公主","followers":9,"videos":18,"likes":834,"comments":70},{"person":"洪碧瑶","name":"蜡笔小宅","followers":244,"videos":17,"likes":19853,"comments":658},{"person":"潘梦营","name":"挖掘宝藏的桃子","followers":14,"videos":17,"likes":1284,"comments":12},{"person":"王梦圆","name":"word麻鸭","followers":67,"videos":17,"likes":2631,"comments":51},{"person":"王梦圆","name":"椰椰汁","followers":2,"videos":17,"likes":286,"comments":36},{"person":"罗永乐","name":"霸气苦茶子","followers":12,"videos":16,"likes":343,"comments":19},{"person":"季朝娣","name":"金泡泡🫧","followers":21,"videos":13,"likes":1523,"comments":2},{"person":"季朝娣","name":"樱桃小完嘟子","followers":4,"videos":13,"likes":137,"comments":37},{"person":"张晨旭","name":"鲨鱼辣椒","followers":14,"videos":13,"likes":1542,"comments":23},{"person":"季朝娣","name":"好柿发生🍅","followers":31,"videos":12,"likes":879,"comments":1},{"person":"安惠靖","name":"半山归晚","followers":31,"videos":12,"likes":3359,"comments":13},{"person":"朱一凡","name":"呜呜酱","followers":22,"videos":12,"likes":1340,"comments":72},{"person":"朱一凡","name":"青提涩","followers":4,"videos":12,"likes":129,"comments":19},{"person":"潘梦营","name":"筱星","followers":38,"videos":12,"likes":1616,"comments":17},{"person":"潘梦营","name":"奶油收藏家","followers":12,"videos":12,"likes":393,"comments":12},{"person":"陈星羽","name":"卷卷薯条","followers":4,"videos":12,"likes":194,"comments":30},{"person":"季朝娣","name":"欧泡贝贝.","followers":3,"videos":11,"likes":118,"comments":33},{"person":"季朝娣","name":"小樱拯救世界","followers":4,"videos":10,"likes":220,"comments":36},{"person":"季朝娣","name":"邪恶银渐层","followers":2,"videos":10,"likes":40,"comments":12},{"person":"李珊","name":"蘑菇烤肉","followers":3,"videos":10,"likes":359,"comments":5},{"person":"潘梦营","name":"不要打打鲨鲨","followers":1,"videos":10,"likes":65,"comments":8},{"person":"张晨旭","name":"遇川","followers":34,"videos":9,"likes":2879,"comments":24},{"person":"朱一凡","name":"但愿人长久","followers":15,"videos":9,"likes":338,"comments":40},{"person":"王梦圆","name":"一秒睡咯","followers":3,"videos":9,"likes":61,"comments":30},{"person":"罗永乐","name":"排骨玉米汤","followers":1036,"videos":9,"likes":7805,"comments":10},{"person":"朱一凡","name":"萌萌兔","followers":4,"videos":8,"likes":110,"comments":25},{"person":"安惠靖","name":"和气生菜","followers":8,"videos":7,"likes":497,"comments":51},{"person":"朱一凡","name":"红烧排骨","followers":4,"videos":7,"likes":69,"comments":16},{"person":"朱一凡","name":"周周","followers":3,"videos":7,"likes":14,"comments":7},{"person":"李珊","name":"剁椒土豆","followers":25,"videos":7,"likes":771,"comments":53},{"person":"安惠靖","name":"失去荔枝","followers":22,"videos":6,"likes":839,"comments":44},{"person":"安惠靖","name":"粥沫鱼块","followers":5,"videos":6,"likes":205,"comments":28},{"person":"安惠靖","name":"我们芝士葡萄朋友","followers":2,"videos":6,"likes":107,"comments":25},{"person":"洪碧瑶","name":"认真你就熟了","followers":1,"videos":6,"likes":12,"comments":0},{"person":"王楚楚","name":"顺顺梨梨🍐","followers":25,"videos":6,"likes":1945,"comments":87},{"person":"罗永乐","name":"自律的潮男","followers":39,"videos":6,"likes":2762,"comments":4},{"person":"洪碧瑶","name":"鱼鱼吃不胖","followers":27,"videos":3,"likes":2362,"comments":2},{"person":"朱怡雯","name":"青苹果","followers":8,"videos":2,"likes":16,"comments":1},{"person":"洪碧瑶","name":"奶芙小记","followers":16,"videos":2,"likes":1019,"comments":2},{"person":"安惠靖","name":"蒜你捣莓","followers":1,"videos":1,"likes":0,"comments":0},{"person":"洪碧瑶","name":"梨想生活","followers":11,"videos":1,"likes":1259,"comments":1},{"person":"张晨旭","name":"白舟","followers":78,"videos":0,"likes":8358,"comments":0},{"person":"朱怡雯","name":"未命名","followers":0,"videos":0,"likes":0,"comments":0}],"engagementRate":[{"name":"巧克巧","followers":2,"rate":1083.5},{"name":"土豆不吃西红柿","followers":64,"rate":393.69},{"name":"听风 观月","followers":8,"rate":244.63},{"name":"怎麻薯掉了","followers":19,"rate":204.21},{"name":"烂番茄","followers":83,"rate":195.94},{"name":"霸气苦茶子","followers":66,"rate":183.61},{"name":"不知豆","followers":118,"rate":182.69},{"name":"可乐鸡翅","followers":12,"rate":179.33},{"name":"萌点怎么了","followers":3,"rate":175},{"name":"达不呦～","followers":23,"rate":174.26},{"name":"椰椰汁","followers":2,"rate":161},{"name":"别动我齐刘海","followers":19,"rate":160.42},{"name":"空气炸锅西蓝花","followers":88,"rate":147.6},{"name":"超级无敌大开门","followers":34,"rate":145.5},{"name":"加冰七分糖","followers":13,"rate":142.92},{"name":"芝士🧀","followers":45,"rate":140.89},{"name":"辣椒鲨鱼","followers":11,"rate":134.45},{"name":"不吃晚饭","followers":49,"rate":132.04},{"name":"不会读心术","followers":22,"rate":131.45},{"name":"Nanami_","followers":114,"rate":124.2},{"name":"玛丽莲梦鼠","followers":42,"rate":121.45},{"name":"蘑菇烤肉","followers":3,"rate":121.33},{"name":"蛋挞派","followers":14,"rate":117.57},{"name":"梨想生活","followers":11,"rate":114.55},{"name":"鲨鱼辣椒","followers":14,"rate":111.79},{"name":"半山归晚","followers":31,"rate":108.77},{"name":"女生发型日记","followers":186,"rate":107.3},{"name":"白舟","followers":78,"rate":107.15},{"name":"芝士没烦恼","followers":11,"rate":105.27},{"name":"白舟","followers":4,"rate":103},{"name":"麻辣公主","followers":9,"rate":100.44},{"name":"炭烤五花肉","followers":960,"rate":93.97},{"name":"挖掘宝藏的桃子","followers":14,"rate":92.57},{"name":"螺蛳粉大王","followers":7,"rate":91.57},{"name":"烦恼退退退","followers":10,"rate":88.9},{"name":"鱼鱼吃不胖","followers":27,"rate":87.56},{"name":"遇川","followers":34,"rate":85.38},{"name":"蜡笔小宅","followers":244,"rate":84.06},{"name":"顺顺梨梨🍐","followers":25,"rate":81.28},{"name":"小年糕","followers":64,"rate":80.66},{"name":"脑袋空空酱","followers":76,"rate":79.51},{"name":"失眠录","followers":21,"rate":78.38},{"name":"西瓜太郎","followers":6,"rate":78},{"name":"知雾","followers":48,"rate":77.88},{"name":"啾啾小猪咪","followers":17,"rate":75.82},{"name":"不要打打鲨鲨","followers":1,"rate":73},{"name":"金泡泡🫧","followers":21,"rate":72.62},{"name":"自律的潮男","followers":39,"rate":70.92},{"name":"噜噜是我（高能量版）","followers":221,"rate":70.64},{"name":"再睡亿分钟","followers":46,"rate":70.26},{"name":"185黑腹男","followers":11,"rate":69.73},{"name":"和气生菜","followers":8,"rate":68.5},{"name":"盖世汤圆","followers":24,"rate":68.38},{"name":"医学生小鱼（测评版）","followers":35,"rate":68.26},{"name":"我们芝士葡萄朋友","followers":2,"rate":66},{"name":"芋圆不打烊","followers":32,"rate":65.16},{"name":"呜呜酱","followers":22,"rate":64.18},{"name":"小樱拯救世界","followers":4,"rate":64},{"name":"奶芙小记","followers":16,"rate":63.81},{"name":"快乐奶茶店","followers":2284,"rate":62.68},{"name":"凉拖孩","followers":21,"rate":61},{"name":"醍醐灌饼","followers":17,"rate":58.47},{"name":"睡眠羊kk","followers":37,"rate":56.59},{"name":"卷卷薯条","followers":4,"rate":56},{"name":"玉玉症患者","followers":6,"rate":51.33},{"name":"欧泡贝贝.","followers":3,"rate":50.33},{"name":"雾知","followers":66,"rate":48.32},{"name":"粥沫鱼块","followers":5,"rate":46.6},{"name":"skye","followers":21,"rate":45.81},{"name":"椰也椰好","followers":11,"rate":44.64},{"name":"樱桃小完嘟子","followers":4,"rate":43.5},{"name":"筱星","followers":38,"rate":42.97},{"name":"失去荔枝","followers":22,"rate":40.14},{"name":"word麻鸭","followers":67,"rate":40.03},{"name":"观月","followers":12,"rate":39.58},{"name":"香菜刺客","followers":17,"rate":39.18},{"name":"玉米泪先流","followers":9,"rate":38.56},{"name":"青提涩","followers":4,"rate":37},{"name":"一块香骨鸡","followers":17,"rate":36.29},{"name":"粉面馒头","followers":733,"rate":36.22},{"name":"荷包蛋","followers":8,"rate":35.38},{"name":"萌萌兔","followers":4,"rate":33.75},{"name":"奶油收藏家","followers":12,"rate":33.75},{"name":"剁椒土豆","followers":25,"rate":32.96},{"name":"遇川","followers":14,"rate":31.21},{"name":"一秒睡咯","followers":3,"rate":30.33},{"name":"霸气苦茶子","followers":12,"rate":30.17},{"name":"椰子烤肉","followers":14,"rate":30.14},{"name":"泡芙小星球","followers":1344,"rate":29.71},{"name":"哈基米","followers":11,"rate":29.55},{"name":"好柿发生🍅","followers":31,"rate":28.39},{"name":"决斗别摸头","followers":17,"rate":27.41},{"name":"邪恶银渐层","followers":2,"rate":26},{"name":"但愿人长久","followers":15,"rate":25.2},{"name":"追求者无数","followers":58,"rate":25.05},{"name":"饼饼有礼","followers":14,"rate":23.36},{"name":"红烧排骨","followers":4,"rate":21.25},{"name":"哇咔咔噜噜","followers":18,"rate":20.56},{"name":"抹有烦恼","followers":14,"rate":20.43},{"name":"吐司耶耶🍞","followers":7,"rate":18.86},{"name":"小梨椰条","followers":6,"rate":17.17},{"name":"自律的潮男","followers":33,"rate":12.03},{"name":"认真你就熟了","followers":1,"rate":12},{"name":"辣条公举～","followers":3302,"rate":11.47},{"name":"魚饼饼","followers":23,"rate":10.3},{"name":"排骨玉米汤","followers":1036,"rate":7.54},{"name":"周周","followers":3,"rate":7},{"name":"青苹果","followers":8,"rate":2.13},{"name":"玉玉症患者","followers":1045,"rate":2.04},{"name":"蒜你捣莓","followers":1,"rate":0}],"sizeDistribution":[{"range":"0-100","count":100},{"range":"101-500","count":5},{"range":"501-1000","count":2},{"range":"1001-5000","count":5},{"range":"5000+","count":0}]};
+var INSIGHTS = ["覆盖总粉丝 13,716 人，总点赞 626,270 次，总评论 18,910 条","粉丝最多的账号是「辣条公举～」，拥有 3,302 粉丝","最受欢迎的账号是「快乐奶茶店」，累计获得 141,859 次点赞","最高产的账号是「辣条公举～」，共发布 193 条视频","热门话题「#拾塑小蓝罐发泥」出现 795 次"];
+
+// 核心洞察
+document.getElementById('insightBox').innerHTML = INSIGHTS.map(function(s) { return '📌 ' + s; }).join('<br>');
+
+// 排行榜
+function renderRank(tbodyId, data, mode) {
+    var tbody = document.getElementById(tbodyId);
+    var html = '';
+    for (var i = 0; i < Math.min(10, data.length); i++) {
+        var item = data[i];
+        var rankClass = i === 0 ? 'rank-1' : (i === 1 ? 'rank-2' : (i === 2 ? 'rank-3' : ''));
+        var name = item.name || '未命名';
+        var v1, v2, v3;
+        if (mode === 'followers') {
+            v1 = item.followers.toLocaleString();
+            v2 = item.videos.toLocaleString();
+            v3 = item.likes.toLocaleString();
+        } else if (mode === 'likes') {
+            v1 = item.likes.toLocaleString();
+            v2 = item.followers.toLocaleString();
+            v3 = item.comments.toLocaleString();
+        } else {
+            v1 = item.videos.toLocaleString();
+            v2 = item.followers.toLocaleString();
+            v3 = item.likes.toLocaleString();
+        }
+        html += '<tr>' +
+            '<td><span class="rank-num ' + rankClass + '">' + (i+1) + '</span></td>' +
+            '<td><strong>' + name + '</strong></td>' +
+            '<td>' + v1 + '</td>' +
+            '<td>' + v2 + '</td>' +
+            '<td>' + v3 + '</td></tr>';
+    }
+    tbody.innerHTML = html;
+}
+
+renderRank('followersRank', DATA.byFollowers, 'followers');
+renderRank('likesRank', DATA.byLikes, 'likes');
+renderRank('videosRank', DATA.byVideos, 'videos');
+
+// 粉丝数分布图
+new Chart(document.getElementById('distChart'), {
+    type: 'pie',
+    data: {
+        labels: DATA.sizeDistribution.map(function(d) { return d.range + ' 粉丝'; }),
+        datasets: [{
+            data: DATA.sizeDistribution.map(function(d) { return d.count; }),
+            backgroundColor: ['#48bb78', '#4299e1', '#ed8936', '#9f7aea', '#f56565'],
+            borderWidth: 2,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { font: { size: 13 } } },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) {
+                        return ctx.label + ': ' + ctx.raw + ' 个账号 (' + (ctx.raw / DATA.totalAccounts * 100).toFixed(1) + '%)';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// 视频类型分布
+var typeLabels = { 'video': '视频', 'image_text': '图文', 'live_replay': '直播回放', 'live': '直播', 'unknown': '其他' };
+var typeKeys = Object.keys(DATA.videoTypes);
+var typeData = typeKeys.map(function(k) { return DATA.videoTypes[k]; });
+var typeNames = typeKeys.map(function(k) { return typeLabels[k] || k; });
+
+new Chart(document.getElementById('typeChart'), {
+    type: 'doughnut',
+    data: {
+        labels: typeNames,
+        datasets: [{
+            data: typeData,
+            backgroundColor: ['#4299e1', '#48bb78', '#ed8936', '#9f7aea', '#f56565'],
+            borderWidth: 2,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { font: { size: 13 } } },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) {
+                        var total = typeData.reduce(function(a,b) { return a+b; }, 0);
+                        return ctx.label + ': ' + ctx.raw + ' 条 (' + (ctx.raw / total * 100).toFixed(1) + '%)';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// 粉丝数柱状图 TOP 15
+var colors15 = ['#667eea','#764ba2','#f093fb','#4facfe','#43e97b','#fa709a','#f6d365','#a18cd1','#fbc2eb','#a6c1ee','#fccb90','#d57eeb','#e0c3fc','#8ec5fc','#a78bfa'];
+var top15 = DATA.byFollowers.slice(0, 15);
+
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: top15.map(function(a) {
+            var name = a.name || '未命名';
+            return name.length > 6 ? name.slice(0,6) + '..' : name;
+        }),
+        datasets: [{
+            label: '粉丝数',
+            data: top15.map(function(a) { return a.followers; }),
+            backgroundColor: colors15,
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { title: { display: true, text: '粉丝数' } },
+            y: { ticks: { font: { size: 11 } } }
+        }
+    }
+});
+
+// 互动率排行
+var engData = DATA.engagementRate.slice(0, 15);
+var engColors = ['#48bb78','#38a169','#4299e1','#3182ce','#ed8936','#dd6b20','#9f7aea','#805ad5','#f56565','#e53e3e','#d69e2e','#b7791f','#38b2ac','#319795','#667eea'];
+
+new Chart(document.getElementById('engagementChart'), {
+    type: 'bar',
+    data: {
+        labels: engData.map(function(a) {
+            var name = a.name || '未命名';
+            return name.length > 6 ? name.slice(0,6) + '..' : name;
+        }),
+        datasets: [{
+            label: '互动率 (互动/粉丝)',
+            data: engData.map(function(a) { return a.rate; }),
+            backgroundColor: engColors,
+            borderRadius: 4,
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { title: { display: true, text: '互动率' } },
+            y: { ticks: { font: { size: 11 } } }
+        }
+    }
+});
+
+// 热门标签
+var tagCloud = document.getElementById('tagCloud');
+var maxCount = 0;
+for (var ti = 0; ti < DATA.topTags.length; ti++) {
+    if (DATA.topTags[ti].count > maxCount) maxCount = DATA.topTags[ti].count;
+}
+var tagHtml = '';
+for (var ti = 0; ti < DATA.topTags.length; ti++) {
+    var t = DATA.topTags[ti];
+    var size = 12 + (t.count / maxCount) * 18;
+    var opacity = 0.5 + (t.count / maxCount) * 0.5;
+    tagHtml += '<span class="tag-item" style="font-size:' + size.toFixed(0) + 'px; opacity:' + opacity.toFixed(2) + '">#' + t.tag + ' (' + t.count + ')</span>';
+}
+tagCloud.innerHTML = tagHtml;
+
+// 所有账号总表
+var allTbody = document.getElementById('allAccountsTable');
+var allHtml = '';
+for (var ai = 0; ai < DATA.byFollowers.length; ai++) {
+    var a = DATA.byFollowers[ai];
+    var er = a.followers > 0 ? ((a.likes + a.comments) / a.followers).toFixed(2) : '-';
+    var person = a.person || '-';
+    allHtml += '<tr>' +
+        '<td>' + (ai+1) + '</td>' +
+        '<td><span style="color:#718096">' + person + '</span></td>' +
+        '<td><a href="./person_dashboards/' + person + '.html" target="_blank" style="color:#3182ce; text-decoration:none;"><strong>' + (a.name || '未命名') + '</strong></a></td>' +
+        '<td>' + a.followers.toLocaleString() + '</td>' +
+        '<td>' + a.videos.toLocaleString() + '</td>' +
+        '<td>' + a.likes.toLocaleString() + '</td>' +
+        '<td>' + a.comments.toLocaleString() + '</td>' +
+        '<td>' + er + '</td></tr>';
+}
+allTbody.innerHTML = allHtml;
+</script>
+</body>
+</html>

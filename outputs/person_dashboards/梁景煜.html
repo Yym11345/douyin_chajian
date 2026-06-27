@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梁景煜 - 抖音视频分级监控看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f0f2f5; color:#333; }
+.header { background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); color:#fff; padding:20px 40px; }
+.header .person { font-size:16px; color:#f6c23e; margin-bottom:2px; font-weight:600; }
+.header h1 { font-size:22px; margin-bottom:4px; }
+.header p { color:#a0aec0; font-size:12px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:18px 40px 6px; }
+.hero-card { display:flex; align-items:center; gap:16px; border-radius:14px; padding:18px 22px; box-shadow:0 4px 16px rgba(0,0,0,0.08); border:2px solid transparent; transition:transform 0.15s; }
+.hero-card:hover { transform:translateY(-2px); }
+.hero-icon { font-size:36px; line-height:1; }
+.hero-num { font-size:36px; font-weight:900; line-height:1.1; }
+.hero-lbl { font-size:13px; font-weight:600; margin-top:4px; }
+.hero-blue { background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%); border-color:#93c5fd; color:#1e3a8a; }
+.hero-red { background:linear-gradient(135deg,#fee2e2 0%,#fef2f2 100%); border-color:#fca5a5; color:#7f1d1d; }
+.hero-red .hero-num { color:#dc2626; }
+.hero-orange { background:linear-gradient(135deg,#ffedd5 0%,#fff7ed 100%); border-color:#fdba74; color:#7c2d12; }
+.hero-orange .hero-num { color:#ea580c; }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; padding:10px 40px 14px; }
+.stat-card { background:linear-gradient(135deg,#fff 60%,#f7fafc); border-radius:10px; padding:10px 8px; box-shadow:0 2px 6px rgba(0,0,0,0.04); text-align:center; }
+.stat-card .num { font-size:20px; font-weight:800; color:#1a1a2e; line-height:1.2; }
+.stat-card .lbl { font-size:11px; color:#718096; margin-top:2px; }
+.stat-card.red { background:linear-gradient(135deg,#fef2f2 60%,#fff); }
+.stat-card.red .num { color:#dc2626; }
+.stat-card.red .lbl { color:#dc2626; }
+.tier-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; padding:0 40px 14px; }
+.tier-card { border-radius:10px; padding:10px 8px; text-align:center; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+.tier-card .icon { font-size:16px; }
+.tier-card .count { font-size:22px; font-weight:800; line-height:1.2; }
+.tier-card .label { font-size:11px; }
+.tier-card .sub { font-size:10px; opacity:0.7; margin-top:2px; color:#666; }
+.content { padding:0 40px 40px; max-width:1700px; margin:0 auto; }
+.tier-panel { border-radius:10px; padding:10px 16px; margin-bottom:10px; border:1px solid #e5e7eb; background:#fff; }
+.tier-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(0,0,0,0.05); }
+.tier-icon { font-size:16px; }
+.tier-label { font-size:14px; font-weight:700; }
+.tier-pill { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+.tier-pill-total { background:rgba(255,255,255,0.7); color:#6b7280; }
+.tier-pill-ok { background:#c8e6c9; color:#1b5e20; }
+.tier-pill-maint { background:#ffcdd2; color:#b71c1c; }
+.tier-table { width:100%; border-collapse:collapse; font-size:12px; }
+.tier-table thead th { background:#f3f4f6; color:#374151; padding:6px 10px; font-size:11px; font-weight:600; text-align:left; }
+.tier-table tbody td { padding:6px 10px; border-bottom:1px solid #f3f4f6; }
+.tier-table tbody tr:hover td { background:#f9fafb; }
+.tier-table tbody tr.row-maint { background:#fef2f2; }
+.tier-table tbody tr.row-maint:hover td { background:#fee2e2; }
+.tier-table tbody tr.row-maint td.num { color:#dc2626; font-weight:700; }
+.tier-table tbody td a { color:#2563eb; text-decoration:none; }
+.tier-table tbody td a:hover { text-decoration:underline; }
+.badge-maint { display:inline-block; background:#dc2626; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:700; }
+.badge-ok { display:inline-block; background:#d1fae5; color:#065f46; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="person">👤 梁景煜</div>
+    <h1>📊 抖音视频分级监控看板</h1>
+    <p>负责账号: 0 个 · 总视频: 0 条 · 数据更新: 2026/6/10 19:05:44</p>
+</div>
+
+<div class="hero-stats">
+    <div class="hero-card hero-blue">
+        <div class="hero-icon">📅</div>
+        <div class="hero-content">
+            <div class="hero-num">0</div>
+            <div class="hero-lbl">近15天 发布视频总数</div>
+        </div>
+    </div>
+    <div class="hero-card hero-red">
+        <div class="hero-icon">⚠️</div>
+        <div class="hero-content">
+            <div class="hero-num">0</div>
+            <div class="hero-lbl">近15天 待维护视频数</div>
+        </div>
+    </div>
+    <div class="hero-card hero-orange">
+        <div class="hero-icon">💬</div>
+        <div class="hero-content">
+            <div class="hero-num">0</div>
+            <div class="hero-lbl">近15天 待评论总数</div>
+        </div>
+    </div>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card"><div class="num">0</div><div class="lbl">负责账号</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="lbl">总粉丝数</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="lbl">总视频数</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="lbl">总点赞</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="lbl">总评论</div></div>
+    <div class="stat-card red"><div class="num">0</div><div class="lbl">⚠️ 待维护(全部)</div></div>
+</div>
+
+<div class="tier-row">
+<div class="tier-card" style="border-top:3px solid #2e7d32;"><div class="icon">🟢</div><div class="count" style="color:#2e7d32;">0</div><div class="label" style="color:#2e7d32;">10赞内</div><div class="sub">✅0 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #1565c0;"><div class="icon">🔵</div><div class="count" style="color:#1565c0;">0</div><div class="label" style="color:#1565c0;">50赞内</div><div class="sub">✅0 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #f57f17;"><div class="icon">🟡</div><div class="count" style="color:#f57f17;">0</div><div class="label" style="color:#f57f17;">100赞内</div><div class="sub">✅0 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #d84315;"><div class="icon">🟠</div><div class="count" style="color:#d84315;">0</div><div class="label" style="color:#d84315;">500赞内</div><div class="sub">✅0 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #c62828;"><div class="icon">🔴</div><div class="count" style="color:#c62828;">0</div><div class="label" style="color:#c62828;">1000赞内</div><div class="sub">✅0 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #6a1b9a;"><div class="icon">🟣</div><div class="count" style="color:#6a1b9a;">0</div><div class="label" style="color:#6a1b9a;">1000赞以上</div><div class="sub">✅0 ⚠️0</div></div>
+</div>
+
+<div class="content">
+
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟢</span>
+        <span class="tier-label" style="color:#2e7d32;">10赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🔵</span>
+        <span class="tier-label" style="color:#1565c0;">50赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟡</span>
+        <span class="tier-label" style="color:#f57f17;">100赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟠</span>
+        <span class="tier-label" style="color:#d84315;">500赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🔴</span>
+        <span class="tier-label" style="color:#c62828;">1000赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟣</span>
+        <span class="tier-label" style="color:#6a1b9a;">1000赞以上</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+</div>
+
+<script>
+  // Directly inject the JSON data from the server, safely encoding < to prevent script breakage
+  const PAGE_DATA = [{"label":"10赞内","color":"#2e7d32","icon":"🟢","max":10,"vids":[]},{"label":"50赞内","color":"#1565c0","icon":"🔵","max":50,"vids":[]},{"label":"100赞内","color":"#f57f17","icon":"🟡","max":100,"vids":[]},{"label":"500赞内","color":"#d84315","icon":"🟠","max":500,"vids":[]},{"label":"1000赞内","color":"#c62828","icon":"🔴","max":1000,"vids":[]},{"label":"1000赞以上","color":"#6a1b9a","icon":"🟣","max":null,"vids":[]}];
+  
+  function htmlEscape(str) {
+      return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+  }
+
+  // Render a specific tier
+  function renderTier(tierIndex) {
+      const tier = PAGE_DATA[tierIndex];
+      const tbody = document.querySelectorAll('.tier-table tbody')[tierIndex];
+      
+      // We render a max of 500 rows to prevent DOM bloat, or we can just render all since the JS loop is fast 
+      // and won't lock up the server. But let's limit to 300 to be safe for DOM.
+      const MAX_ROWS = 300;
+      const vidsToRender = tier.vids.slice(0, MAX_ROWS);
+      
+      let rowsHtml = '';
+      vidsToRender.forEach((v, i) => {
+          const pubDate = (v.publishedAt || '').slice(0, 10);
+          const safeTitle = htmlEscape(v.title || '');
+          const shortTitle = htmlEscape((v.title || '').slice(0, 40));
+          const rowClass = v.isMaint ? 'row-maint' : '';
+          const statusBadge = v.isMaint ? '<span class="badge-maint">⚠️ 待维护</span>' : '<span class="badge-ok">✅ 达标</span>';
+          const commentsHtml = v.comments + (v.isMaint ? ' <em>/' + v.targetComments + '</em>' : '');
+          
+          rowsHtml += '<tr class="' + rowClass + '"><td class="num">' + (i+1) + '</td><td>' + statusBadge + '</td><td>' + htmlEscape(v.accountName) + '</td><td><a href="' + (v.url || '#') + '" target="_blank" title="' + safeTitle + '">' + shortTitle + (v.title && v.title.length > 40 ? '...' : '') + '</a></td><td class="num">' + v.likes + '</td><td class="num">' + commentsHtml + '</td><td>' + pubDate + '</td></tr>';
+      });
+      
+      if (tier.vids.length > MAX_ROWS) {
+          rowsHtml += '<tr><td colspan="7" style="text-align:center;color:#666;">只显示前 ' + MAX_ROWS + ' 条数据，更多数据请查看全局面板或下载 Excel。</td></tr>';
+      }
+      
+      tbody.innerHTML = rowsHtml;
+  }
+
+  // Initialize all tiers
+  document.addEventListener('DOMContentLoaded', () => {
+      for (let i = 0; i < PAGE_DATA.length; i++) {
+          renderTier(i);
+      }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朱一凡 - 抖音视频分级监控看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f0f2f5; color:#333; }
+.header { background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); color:#fff; padding:20px 40px; }
+.header .person { font-size:16px; color:#f6c23e; margin-bottom:2px; font-weight:600; }
+.header h1 { font-size:22px; margin-bottom:4px; }
+.header p { color:#a0aec0; font-size:12px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:18px 40px 6px; }
+.hero-card { display:flex; align-items:center; gap:16px; border-radius:14px; padding:18px 22px; box-shadow:0 4px 16px rgba(0,0,0,0.08); border:2px solid transparent; transition:transform 0.15s; }
+.hero-card:hover { transform:translateY(-2px); }
+.hero-icon { font-size:36px; line-height:1; }
+.hero-num { font-size:36px; font-weight:900; line-height:1.1; }
+.hero-lbl { font-size:13px; font-weight:600; margin-top:4px; }
+.hero-blue { background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%); border-color:#93c5fd; color:#1e3a8a; }
+.hero-red { background:linear-gradient(135deg,#fee2e2 0%,#fef2f2 100%); border-color:#fca5a5; color:#7f1d1d; }
+.hero-red .hero-num { color:#dc2626; }
+.hero-orange { background:linear-gradient(135deg,#ffedd5 0%,#fff7ed 100%); border-color:#fdba74; color:#7c2d12; }
+.hero-orange .hero-num { color:#ea580c; }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; padding:10px 40px 14px; }
+.stat-card { background:linear-gradient(135deg,#fff 60%,#f7fafc); border-radius:10px; padding:10px 8px; box-shadow:0 2px 6px rgba(0,0,0,0.04); text-align:center; }
+.stat-card .num { font-size:20px; font-weight:800; color:#1a1a2e; line-height:1.2; }
+.stat-card .lbl { font-size:11px; color:#718096; margin-top:2px; }
+.stat-card.red { background:linear-gradient(135deg,#fef2f2 60%,#fff); }
+.stat-card.red .num { color:#dc2626; }
+.stat-card.red .lbl { color:#dc2626; }
+.tier-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; padding:0 40px 14px; }
+.tier-card { border-radius:10px; padding:10px 8px; text-align:center; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+.tier-card .icon { font-size:16px; }
+.tier-card .count { font-size:22px; font-weight:800; line-height:1.2; }
+.tier-card .label { font-size:11px; }
+.tier-card .sub { font-size:10px; opacity:0.7; margin-top:2px; color:#666; }
+.content { padding:0 40px 40px; max-width:1700px; margin:0 auto; }
+.tier-panel { border-radius:10px; padding:10px 16px; margin-bottom:10px; border:1px solid #e5e7eb; background:#fff; }
+.tier-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(0,0,0,0.05); }
+.tier-icon { font-size:16px; }
+.tier-label { font-size:14px; font-weight:700; }
+.tier-pill { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+.tier-pill-total { background:rgba(255,255,255,0.7); color:#6b7280; }
+.tier-pill-ok { background:#c8e6c9; color:#1b5e20; }
+.tier-pill-maint { background:#ffcdd2; color:#b71c1c; }
+.tier-table { width:100%; border-collapse:collapse; font-size:12px; }
+.tier-table thead th { background:#f3f4f6; color:#374151; padding:6px 10px; font-size:11px; font-weight:600; text-align:left; }
+.tier-table tbody td { padding:6px 10px; border-bottom:1px solid #f3f4f6; }
+.tier-table tbody tr:hover td { background:#f9fafb; }
+.tier-table tbody tr.row-maint { background:#fef2f2; }
+.tier-table tbody tr.row-maint:hover td { background:#fee2e2; }
+.tier-table tbody tr.row-maint td.num { color:#dc2626; font-weight:700; }
+.tier-table tbody td a { color:#2563eb; text-decoration:none; }
+.tier-table tbody td a:hover { text-decoration:underline; }
+.badge-maint { display:inline-block; background:#dc2626; color:#fff; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:700; }
+.badge-ok { display:inline-block; background:#d1fae5; color:#065f46; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="person">👤 朱一凡</div>
+    <h1>📊 抖音视频分级监控看板</h1>
+    <p>负责账号: 6 个 · 总视频: 54 条 · 数据更新: 2026/6/10 19:05:44</p>
+</div>
+
+<div class="hero-stats">
+    <div class="hero-card hero-blue">
+        <div class="hero-icon">📅</div>
+        <div class="hero-content">
+            <div class="hero-num">51</div>
+            <div class="hero-lbl">近15天 发布视频总数</div>
+        </div>
+    </div>
+    <div class="hero-card hero-red">
+        <div class="hero-icon">⚠️</div>
+        <div class="hero-content">
+            <div class="hero-num">3</div>
+            <div class="hero-lbl">近15天 待维护视频数</div>
+        </div>
+    </div>
+    <div class="hero-card hero-orange">
+        <div class="hero-icon">💬</div>
+        <div class="hero-content">
+            <div class="hero-num">4</div>
+            <div class="hero-lbl">近15天 待评论总数</div>
+        </div>
+    </div>
+</div>
+
+<div class="stats-row">
+    <div class="stat-card"><div class="num">6</div><div class="lbl">负责账号</div></div>
+    <div class="stat-card"><div class="num">52</div><div class="lbl">总粉丝数</div></div>
+    <div class="stat-card"><div class="num">54</div><div class="lbl">总视频数</div></div>
+    <div class="stat-card"><div class="num">1,998</div><div class="lbl">总点赞</div></div>
+    <div class="stat-card"><div class="num">180</div><div class="lbl">总评论</div></div>
+    <div class="stat-card red"><div class="num">7</div><div class="lbl">⚠️ 待维护(全部)</div></div>
+</div>
+
+<div class="tier-row">
+<div class="tier-card" style="border-top:3px solid #2e7d32;"><div class="icon">🟢</div><div class="count" style="color:#2e7d32;">38</div><div class="label" style="color:#2e7d32;">10赞内</div><div class="sub">✅36 ⚠️2</div></div><div class="tier-card" style="border-top:3px solid #1565c0;"><div class="icon">🔵</div><div class="count" style="color:#1565c0;">11</div><div class="label" style="color:#1565c0;">50赞内</div><div class="sub">✅7 ⚠️4</div></div><div class="tier-card" style="border-top:3px solid #f57f17;"><div class="icon">🟡</div><div class="count" style="color:#f57f17;">2</div><div class="label" style="color:#f57f17;">100赞内</div><div class="sub">✅2 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #d84315;"><div class="icon">🟠</div><div class="count" style="color:#d84315;">3</div><div class="label" style="color:#d84315;">500赞内</div><div class="sub">✅2 ⚠️1</div></div><div class="tier-card" style="border-top:3px solid #c62828;"><div class="icon">🔴</div><div class="count" style="color:#c62828;">1</div><div class="label" style="color:#c62828;">1000赞内</div><div class="sub">✅1 ⚠️0</div></div><div class="tier-card" style="border-top:3px solid #6a1b9a;"><div class="icon">🟣</div><div class="count" style="color:#6a1b9a;">0</div><div class="label" style="color:#6a1b9a;">1000赞以上</div><div class="sub">✅0 ⚠️0</div></div>
+</div>
+
+<div class="content">
+
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟢</span>
+        <span class="tier-label" style="color:#2e7d32;">10赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 2</span>
+        <span class="tier-pill tier-pill-total">共 38 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🔵</span>
+        <span class="tier-label" style="color:#1565c0;">50赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 1</span>
+        <span class="tier-pill tier-pill-total">共 11 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟡</span>
+        <span class="tier-label" style="color:#f57f17;">100赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 2 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟠</span>
+        <span class="tier-label" style="color:#d84315;">500赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 3 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🔴</span>
+        <span class="tier-label" style="color:#c62828;">1000赞内</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 1 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+    <div class="tier-panel">
+    <div class="tier-header">
+        <span class="tier-icon">🟣</span>
+        <span class="tier-label" style="color:#6a1b9a;">1000赞以上</span>
+        <span class="tier-pill tier-pill-maint">⚠️ 15天待维护 0</span>
+        <span class="tier-pill tier-pill-total">共 0 条</span>
+    </div>
+    <div class="tier-strips"><table class="sortable tier-table"><thead><tr><th class="num">#</th><th class="no-sort">状态</th><th>账号</th><th>标题</th><th class="num">点赞</th><th class="num">评论</th><th>日期</th></tr></thead><tbody>
+    
+    </tbody></table></div></div>
+</div>
+
+<script>
+  // Directly inject the JSON data from the server, safely encoding < to prevent script breakage
+  const PAGE_DATA = [{"label":"10赞内","color":"#2e7d32","icon":"🟢","max":10,"vids":[{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7649572189985990629","type":"video","title":"请所有女生都把自己当韩女来养！#素人爆改计划#美女逆袭成功#护发养发#不看后悔系列","url":"https://www.douyin.com/video/7649572189985990629","publishedAt":"2026-06-10T09:26:57+08:00","duration":"00:28","isTop":0,"likes":1,"comments":0,"shares":1,"favorites":1,"tags":"素人爆改计划 美女逆袭成功 护发养发 不看后悔系列","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":true,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7646338565086343515","type":"video","title":"改善头发毛躁、沙发炸毛小妙招（上岸版） 宝子们速速跟练！#毛躁头 #头发毛躁怎么变得柔顺光滑 #创作者中心 #热门 #护发","url":"https://www.douyin.com/video/7646338565086343515","publishedAt":"2026-06-01T16:18:50+08:00","duration":"00:23","isTop":0,"likes":2,"comments":0,"shares":0,"favorites":0,"tags":"毛躁头 头发毛躁怎么变得柔顺光滑 创作者中心 热门 护发","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":true,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7649580129945765241","type":"image_text","title":"超详细版改善头发毛躁教程大家快跟练起来吧#养发护发#改善头发毛躁#热门#沙发","url":"https://www.douyin.com/video/7649580129945765241","publishedAt":"2026-06-10T09:57:46+08:00","duration":"","isTop":0,"likes":5,"comments":1,"shares":1,"favorites":2,"tags":"养发护发 改善头发毛躁 热门 沙发","musicTitle":"@🍒七七🍒ငေွလွှဲ创作的原声","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7649576347867076965","type":"image_text","title":"超详细版改善头发毛躁教程大家快跟练起来吧#养发护发#改善头发毛躁#热门#沙发","url":"https://www.douyin.com/video/7649576347867076965","publishedAt":"2026-06-10T09:43:05+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":2,"favorites":1,"tags":"养发护发 改善头发毛躁 热门 沙发","musicTitle":"游京","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7649571138553546979","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～#新手化妆教程#底妆#不卡粉#变美","url":"https://www.douyin.com/video/7649571138553546979","publishedAt":"2026-06-10T09:22:52+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":1,"favorites":1,"tags":"新手化妆教程 底妆 不卡粉 变美","musicTitle":"@𝓡𝔀𝓛𝓂🇺🇸创作的原声","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7649568800559687525","type":"image_text","title":"女大学生自用防晒大测评!别花冤枉钱了，看完军训不踩雷#防晒#夏季防晒 #真实生活分享计划 #618#军训","url":"https://www.douyin.com/video/7649568800559687525","publishedAt":"2026-06-10T09:13:49+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":1,"favorites":1,"tags":"防晒 夏季防晒 真实生活分享计划 618 军训","musicTitle":"@🪵～芷琳创作的原声","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7649566435279131643","type":"video","title":"请所有女生都把自己当韩女来养！#素人爆改计划#美女逆袭成功#护发养发#不看后悔系列","url":"https://www.douyin.com/video/7649566435279131643","publishedAt":"2026-06-10T09:04:38+08:00","duration":"00:40","isTop":0,"likes":1,"comments":1,"shares":3,"favorites":1,"tags":"素人爆改计划 美女逆袭成功 护发养发 不看后悔系列","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7649204959813114491","type":"image_text","title":"宝宝们，超详细版改善头发毛躁教程来啦！大家快跟练起来吧#养发护发#改善头发毛躁#经验分享#沙发","url":"https://www.douyin.com/video/7649204959813114491","publishedAt":"2026-06-09T09:41:55+08:00","duration":"","isTop":0,"likes":6,"comments":2,"shares":4,"favorites":2,"tags":"养发护发 改善头发毛躁 经验分享 沙发","musicTitle":"@旧 🍃创作的原声","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7649203031326575269","type":"image_text","title":"超详细版改善头发毛躁教程大家快跟练起来吧#养发护发#改善头发毛躁#热门#沙发","url":"https://www.douyin.com/video/7649203031326575269","publishedAt":"2026-06-09T09:34:25+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":0,"favorites":1,"tags":"养发护发 改善头发毛躁 热门 沙发","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7649199075891857531","type":"video","title":"邪修版改善头发毛躁小技巧#养发护发#改善头发毛躁小技巧#经验分享#热门","url":"https://www.douyin.com/video/7649199075891857531","publishedAt":"2026-06-09T09:19:04+08:00","duration":"00:23","isTop":0,"likes":1,"comments":1,"shares":1,"favorites":1,"tags":"养发护发 改善头发毛躁小技巧 经验分享 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7649196425481544378","type":"video","title":"改善头发毛躁新手版步骤来了快来跟练#护发养发#改善头发毛躁#经验分享#热门","url":"https://www.douyin.com/video/7649196425481544378","publishedAt":"2026-06-09T09:08:48+08:00","duration":"00:19","isTop":0,"likes":1,"comments":1,"shares":0,"favorites":3,"tags":"护发养发 改善头发毛躁 经验分享 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7649195752716127739","type":"image_text","title":"女大学生自用防晒大测评!别花冤枉钱了，看完军训不踩雷#防晒#夏季防晒 #真实生活分享计划 #618#军训","url":"https://www.douyin.com/video/7649195752716127739","publishedAt":"2026-06-09T09:06:11+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":0,"favorites":1,"tags":"防晒 夏季防晒 真实生活分享计划 618 军训","musicTitle":"@萨玛驰卖鞋子的刘小会创作的原声","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7649194777532028303","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～#新手化妆教程#底妆#不卡粉#变美","url":"https://www.douyin.com/video/7649194777532028303","publishedAt":"2026-06-09T09:02:25+08:00","duration":"","isTop":0,"likes":2,"comments":1,"shares":0,"favorites":2,"tags":"新手化妆教程 底妆 不卡粉 变美","musicTitle":"爆了爆了上热门","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7648833120960202088","type":"image_text","title":"超详细版改善头发毛躁教程大家快跟练起来吧#养发护发#改善头发毛躁#618#沙发#改善头发毛躁","url":"https://www.douyin.com/video/7648833120960202088","publishedAt":"2026-06-08T09:39:00+08:00","duration":"","isTop":0,"likes":5,"comments":2,"shares":2,"favorites":2,"tags":"养发护发 沙发","musicTitle":"Stay with me（氛围beat）-全曲","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7648831377484441408","type":"image_text","title":"超详细版改善头发毛躁教程大家快跟练起来吧#养发护发#改善头发毛躁#618#沙发","url":"https://www.douyin.com/video/7648831377484441408","publishedAt":"2026-06-08T09:32:13+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":2,"favorites":1,"tags":"养发护发 改善头发毛躁 618 沙发","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7648828925661924032","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～#新手化妆教程#底妆#不卡粉#变美","url":"https://www.douyin.com/video/7648828925661924032","publishedAt":"2026-06-08T09:22:42+08:00","duration":"","isTop":0,"likes":1,"comments":1,"shares":1,"favorites":1,"tags":"新手化妆教程 底妆 不卡粉 变美","musicTitle":"爆了爆了上热门","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7648825505794163685","type":"image_text","title":"高考后出去玩到底买那个防晒啊！\n安耐晒：网上很热门的防晒霜，用之前摇匀就可以，就是上脸有点油\n未来氧气：夏天怕晒黑就用它，顶着大太阳去爬山都没有分层\n理肤泉：挤出来是淡黄色的液体，防黑也很厉害，会有点油腻\n理肤天使：皮肤米感的可以用它，肤质很清爽，防晒力也不错\n#防晒推荐#好物分享#高考后旅游#618","url":"https://www.douyin.com/video/7648825505794163685","publishedAt":"2026-06-08T09:09:26+08:00","duration":"","isTop":0,"likes":2,"comments":1,"shares":1,"favorites":1,"tags":"防晒推荐 好物分享 高考后旅游 618","musicTitle":"我只能说你太识货了（剪辑版）","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7648824175059530683","type":"video","title":"头发毛躁邪修版（跟练版）#护发养发#改善头发毛躁#618#热门","url":"https://www.douyin.com/video/7648824175059530683","publishedAt":"2026-06-08T09:04:17+08:00","duration":"00:25","isTop":0,"likes":2,"comments":1,"shares":1,"favorites":1,"tags":"护发养发 改善头发毛躁 618 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7648822096977827770","type":"video","title":"改善毛躁、干枯头邪修版（新手上岸版）#护发养发#改善头发毛躁#618#热门","url":"https://www.douyin.com/video/7648822096977827770","publishedAt":"2026-06-08T08:56:13+08:00","duration":"00:25","isTop":0,"likes":1,"comments":1,"shares":3,"favorites":1,"tags":"护发养发 改善头发毛躁 618 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7648223701708336485","type":"image_text","title":"感谢大家对我的喜欢，我会坚持出详细版改善教程的，宝宝们快来跟练吧！#改善头发毛躁#经验分享#热门#养发护发","url":"https://www.douyin.com/video/7648223701708336485","publishedAt":"2026-06-06T18:14:07+08:00","duration":"","isTop":0,"likes":3,"comments":1,"shares":0,"favorites":2,"tags":"改善头发毛躁 经验分享 热门 养发护发","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7648162856165593337","type":"image_text","title":"女大学生自用防晒喷雾大测评!别花冤枉钱了，看完军训不踩雷#防晒喷雾#夏季防晒 #真实生活分享计划 #618","url":"https://www.douyin.com/video/7648162856165593337","publishedAt":"2026-06-06T14:18:00+08:00","duration":"","isTop":0,"likes":3,"comments":1,"shares":0,"favorites":3,"tags":"防晒喷雾 夏季防晒 真实生活分享计划 618","musicTitle":"@枕星优选创作的原声","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7648088702712023668","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～#新手化妆#底妆#不卡粉#变美","url":"https://www.douyin.com/video/7648088702712023668","publishedAt":"2026-06-06T09:30:16+08:00","duration":"","isTop":0,"likes":6,"comments":2,"shares":2,"favorites":5,"tags":"新手化妆 底妆 不卡粉 变美","musicTitle":"爆了爆了上热门","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7648085176241260901","type":"video","title":"改善头发毛躁新手版步骤来了，快来跟练#护发养发#经验分享#热门#改善头发毛躁教程","url":"https://www.douyin.com/video/7648085176241260901","publishedAt":"2026-06-06T09:16:34+08:00","duration":"00:21","isTop":0,"likes":3,"comments":1,"shares":0,"favorites":1,"tags":"护发养发 经验分享 热门 改善头发毛躁教程","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7648084284960088505","type":"video","title":"改善头发毛躁跟练版#护发养发#改善头发毛躁#热门#变美小技巧","url":"https://www.douyin.com/video/7648084284960088505","publishedAt":"2026-06-06T09:13:07+08:00","duration":"00:25","isTop":0,"likes":2,"comments":1,"shares":0,"favorites":1,"tags":"护发养发 改善头发毛躁 热门 变美小技巧","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7647736432496962149","type":"image_text","title":"改善头发毛躁小妙招！#养发小妙招 #护发养发 #经验分享 #热门","url":"https://www.douyin.com/video/7647736432496962149","publishedAt":"2026-06-05T10:43:17+08:00","duration":"","isTop":0,"likes":6,"comments":1,"shares":1,"favorites":11,"tags":"养发小妙招 护发养发 经验分享 热门","musicTitle":"Stay with me（氛围beat）-全曲","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7647730054542380389","type":"image_text","title":"蜜丝婷:跟风入的，我看的买的人挺多的，个人感觉日常防晒挺不错的\n兰蔻：水凝乳液质地，上脸秒成膜、零泛白、不闷痘，妆前打底首选，哑光控油，不搓泥有预算的可以冲\n未来氧气：:这款是我做功课入的，防晒效果嘎嘎顶，价格也很便宜，我现在但凡出门都会带上\n理肤泉：这款肤感可能有点厚重，但是在户外活动可以不会晒黑可以考虑它\n安热沙:这款防晒也是老品牌了，去年用过几次，防水挺不错，就是有点油\n理肤天使：肤感很清爽，一点都不厚重，成分很安全，很温和，防晒力也不错\n#防晒推荐 #无限回购好物 #好物分享  #618#夏日防晒","url":"https://www.douyin.com/video/7647730054542380389","publishedAt":"2026-06-05T10:18:31+08:00","duration":"","isTop":0,"likes":3,"comments":1,"shares":0,"favorites":1,"tags":"防晒推荐 无限回购好物 好物分享 618 夏日防晒","musicTitle":"@你又不搞我创作的原声","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7647729157963665009","type":"video","title":"改善头发毛躁经验分享！\n#护发养发#护发#创作者中心#如何让头发变得柔顺","url":"https://www.douyin.com/video/7647729157963665009","publishedAt":"2026-06-05T10:15:03+08:00","duration":"00:20","isTop":0,"likes":2,"comments":1,"shares":1,"favorites":1,"tags":"护发养发 护发 创作者中心 如何让头发变得柔顺","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7647725532146974586","type":"video","title":"零成本改善头发毛躁小妙招#养发小妙招 #护发养发 #经验分享 #热门","url":"https://www.douyin.com/video/7647725532146974586","publishedAt":"2026-06-05T10:00:58+08:00","duration":"00:31","isTop":0,"likes":2,"comments":1,"shares":0,"favorites":1,"tags":"养发小妙招 护发养发 经验分享 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7647343669267684261","type":"image_text","title":"这里面有你在用的防晒吗\n#防晒霜 #防晒霜推荐 #防晒防黑 #618#520","url":"https://www.douyin.com/video/7647343669267684261","publishedAt":"2026-06-04T09:19:10+08:00","duration":"","isTop":0,"likes":2,"comments":2,"shares":0,"favorites":1,"tags":"防晒霜 防晒霜推荐 防晒防黑 618 520","musicTitle":"@枕星优选创作的原声","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7647342654799697061","type":"video","title":"详细版护发教程，小宝们快来\n#毛发躁头 #头发毛躁怎么变得柔顺光滑 #创作者中心#热门","url":"https://www.douyin.com/video/7647342654799697061","publishedAt":"2026-06-04T09:15:13+08:00","duration":"00:21","isTop":0,"likes":2,"comments":1,"shares":0,"favorites":2,"tags":"毛发躁头 头发毛躁怎么变得柔顺光滑 创作者中心 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7647341458827467685","type":"video","title":"超级详细版护发教程，宝宝快来跟练啦\n#毛躁头 #头发毛躁怎么变得柔顺光滑 #创作者中心#热门","url":"https://www.douyin.com/video/7647341458827467685","publishedAt":"2026-06-04T09:10:34+08:00","duration":"00:25","isTop":0,"likes":1,"comments":1,"shares":0,"favorites":2,"tags":"毛躁头 头发毛躁怎么变得柔顺光滑 创作者中心 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7646983331279896827","type":"image_text","title":"感谢大家对我的喜欢，我会坚持出详细版改善头发毛躁教程的，宝子们快来跟练吧！ #毛躁头 #头发毛躁怎么变得柔顺光滑#拾塑蓝胖子发膜 #创作者中心  #热门","url":"https://www.douyin.com/video/7646983331279896827","publishedAt":"2026-06-03T10:00:51+08:00","duration":"","isTop":0,"likes":2,"comments":2,"shares":0,"favorites":2,"tags":"毛躁头 头发毛躁怎么变得柔顺光滑 拾塑蓝胖子发膜 创作者中心 热门","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"周周","account_id":"MS4wLjABAAAAAC5QUPInR5CxPOA3rbPT2YnMi8DHuUdFdOY0U3MYRZJqNIHkQJa5NqGBE-CMZ-jK","id":"7646976714274911077","type":"image_text","title":"我只是想买个防晒霜而已...#防晒霜推荐 #防晒霜测评 #未来氧气防晒霜 #618#520","url":"https://www.douyin.com/video/7646976714274911077","publishedAt":"2026-06-03T09:35:10+08:00","duration":"","isTop":0,"likes":2,"comments":1,"shares":1,"favorites":2,"tags":"防晒霜推荐 防晒霜测评 未来氧气防晒霜 618 520","musicTitle":"爆了爆了上热门","accountName":"周周","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7646973009928633509","type":"video","title":"零成本改善头发毛躁，夯爆了！#护发养发 #变美小技巧 #头发毛躁怎么变得柔顺光滑 #热门","url":"https://www.douyin.com/video/7646973009928633509","publishedAt":"2026-06-03T09:20:49+08:00","duration":"00:32","isTop":0,"likes":8,"comments":1,"shares":0,"favorites":4,"tags":"护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7646707420610426319","type":"image_text","title":"选防晒霜还是要做好功课!太阳出来了，大家一定要做好防晒出门哦，防止紫外线对我们皮肤的伤害#防晒霜#防晒霜推荐#防晒#无限回购的防晒好物推荐#护肤","url":"https://www.douyin.com/video/7646707420610426319","publishedAt":"2026-06-02T16:10:11+08:00","duration":"","isTop":0,"likes":2,"comments":1,"shares":0,"favorites":1,"tags":"防晒霜 防晒霜推荐 防晒 无限回购的防晒好物推荐 护肤","musicTitle":"Proof(Slowed)","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7646611942295009914","type":"video","title":"low成本改善头发毛躁方法，速速码住!##创作者扶持计划#护发养发#变美小技巧\n#头发毛躁怎么变得柔顺光滑#热门","url":"https://www.douyin.com/video/7646611942295009914","publishedAt":"2026-06-02T09:59:40+08:00","duration":"00:37","isTop":0,"likes":6,"comments":1,"shares":1,"favorites":4,"tags":"创作者扶持计划 护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":1},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7646609012134543857","type":"video","title":"low成本养出绸缎发方法速速码住!#创作者扶持计划 #护发养发 #变美小技发毛躁怎么变得柔顺光滑#热门","url":"https://www.douyin.com/video/7646609012134543857","publishedAt":"2026-06-02T09:48:19+08:00","duration":"00:22","isTop":0,"likes":10,"comments":5,"shares":1,"favorites":5,"tags":"创作者扶持计划 护发养发 变美小技发毛躁怎么变得柔顺光滑 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7646373936137613178","type":"video","title":"low成本改善头发毛躁妙招（成功版） #创作者扶持计划 #护发养发 #变美小技巧 #头发毛躁怎么变得柔顺光滑#热门","url":"https://www.douyin.com/video/7646373936137613178","publishedAt":"2026-06-01T18:36:06+08:00","duration":"00:23","isTop":0,"likes":9,"comments":2,"shares":4,"favorites":5,"tags":"创作者扶持计划 护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":1}]},{"label":"50赞内","color":"#1565c0","icon":"🔵","max":50,"vids":[{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7647112707170636273","type":"image_text","title":"护发届最严厉的母亲来了#护发养发 #经验分享","url":"https://www.douyin.com/video/7647112707170636273","publishedAt":"2026-06-03T18:22:54+08:00","duration":"","isTop":0,"likes":21,"comments":0,"shares":0,"favorites":8,"tags":"护发养发 经验分享","musicTitle":"Stay with me（氛围beat）-全曲","accountName":"红烧排骨","isMaint":true,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7644145317369466831","type":"image_text","title":"有手就行 我看谁还不会护发。#护发 #发膜 #经验分享 #热门 #聊天截图","url":"https://www.douyin.com/video/7644145317369466831","publishedAt":"2026-05-26T18:27:55+08:00","duration":"","isTop":0,"likes":41,"comments":0,"shares":0,"favorites":13,"tags":"护发 发膜 经验分享 热门 聊天截图","musicTitle":"热门旋律1.0-全曲","accountName":"但愿人长久","isMaint":true,"isL15":false,"targetComments":2},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7644140933915783601","type":"image_text","title":"有手就行 我看谁还不会护发。#护发#护发养发 #聊天记录 #教程 #毛燥头","url":"https://www.douyin.com/video/7644140933915783601","publishedAt":"2026-05-26T18:10:54+08:00","duration":"","isTop":0,"likes":34,"comments":0,"shares":3,"favorites":14,"tags":"护发 护发养发 聊天记录 教程 毛燥头","musicTitle":"","accountName":"青提涩","isMaint":true,"isL15":false,"targetComments":2},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7644139322370807281","type":"image_text","title":"有手就行 我看谁还不会护发。#护发 #经验分享 #发膜 #养发护发的小窍门推荐 #聊天记录","url":"https://www.douyin.com/video/7644139322370807281","publishedAt":"2026-05-26T18:04:39+08:00","duration":"","isTop":0,"likes":13,"comments":0,"shares":3,"favorites":14,"tags":"护发 经验分享 发膜 养发护发的小窍门推荐 聊天记录","musicTitle":"爆了上热门了","accountName":"萌萌兔","isMaint":true,"isL15":false,"targetComments":2},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7648094812323430885","type":"image_text","title":"感谢大家对我的喜欢，我会坚持出详细版改善教程的，宝宝们快来跟练吧！#改善头发毛躁#经验分享#热门#养发护发","url":"https://www.douyin.com/video/7648094812323430885","publishedAt":"2026-06-06T09:53:58+08:00","duration":"","isTop":0,"likes":11,"comments":5,"shares":5,"favorites":4,"tags":"改善头发毛躁 经验分享 热门 养发护发","musicTitle":"Stay with me（氛围beat）-全曲","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7647737210057792101","type":"image_text","title":"改善头发毛躁小妙招！宝宝们速速行动起来#养发小妙招 #护发养发 #经验分享 #热门","url":"https://www.douyin.com/video/7647737210057792101","publishedAt":"2026-06-05T10:46:18+08:00","duration":"","isTop":0,"likes":30,"comments":5,"shares":6,"favorites":20,"tags":"养发小妙招 护发养发 经验分享 热门","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7647733538318474722","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～#新手化妆 #底妆 #不卡粉 #变美","url":"https://www.douyin.com/video/7647733538318474722","publishedAt":"2026-06-05T10:32:04+08:00","duration":"","isTop":0,"likes":24,"comments":5,"shares":6,"favorites":19,"tags":"新手化妆 底妆 不卡粉 变美","musicTitle":"爆了上热门","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"红烧排骨","account_id":"MS4wLjABAAAA6CJao_qC0fA9mx4rzb1Y7x5vO2qNWh3vrm81yE0TYSU2eb_gdvudRCgicrq8uTYk","id":"7647354815319749297","type":"image_text","title":"超级无敌详细版护发教程，快来跟练啦#毛躁头#头发毛躁怎么变得柔顺光滑#创作者中心#热门","url":"https://www.douyin.com/video/7647354815319749297","publishedAt":"2026-06-04T10:02:24+08:00","duration":"","isTop":0,"likes":15,"comments":5,"shares":4,"favorites":13,"tags":"毛躁头 头发毛躁怎么变得柔顺光滑 创作者中心 热门","musicTitle":"Stay with me（氛围beat）-全曲","accountName":"红烧排骨","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7646972010648909157","type":"video","title":"改善头发毛躁超详细教程速速码住#护发养发 #变美小技巧 #头发毛躁怎么变得柔顺光滑 #热门","url":"https://www.douyin.com/video/7646972010648909157","publishedAt":"2026-06-03T09:16:55+08:00","duration":"00:30","isTop":0,"likes":29,"comments":5,"shares":5,"favorites":12,"tags":"护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7645971563963716467","type":"video","title":"邪修改善烫染毛躁头发小技巧（低成本跟练！） #护发 #头发毛躁修复 #护发养发 #教程 #热门","url":"https://www.douyin.com/video/7645971563963716467","publishedAt":"2026-05-31T16:34:41+08:00","duration":"00:27","isTop":0,"likes":20,"comments":4,"shares":2,"favorites":4,"tags":"护发 头发毛躁修复 护发养发 教程 热门","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":2},{"person":"朱一凡","account_name":"青提涩","account_id":"MS4wLjABAAAAZkryZNBHUhVqb5599DXBI-Wab6fce6bYluIGbhFXqcNzWMf550yOU3zgG8kzMTeW","id":"7645262924563159666","type":"video","title":"邪修改善毛躁头发小技巧（低成本蛋白矫正） #女大学生 #养发护发 #护发 #热门 #头发毛躁怎么变得柔顺光滑","url":"https://www.douyin.com/video/7645262924563159666","publishedAt":"2026-05-30T08:44:00+08:00","duration":"00:25","isTop":0,"likes":27,"comments":4,"shares":4,"favorites":21,"tags":"女大学生 养发护发 护发 热门 头发毛躁怎么变得柔顺光滑","musicTitle":"@青提涩创作的原声","accountName":"青提涩","isMaint":false,"isL15":true,"targetComments":2}]},{"label":"100赞内","color":"#f57f17","icon":"🟡","max":100,"vids":[{"person":"朱一凡","account_name":"萌萌兔","account_id":"MS4wLjABAAAAATO3bDNXmiUqUrwrc24n73fx6RG_Zt16kbODy2aXFbI3vwzcZkAGIKvd4twN2ceT","id":"7647351006628813285","type":"image_text","title":"超级详细版护发教程，宝宝快来跟练啦#毛躁头#头发毛躁怎么变得柔顺光滑#创作者中心#热门","url":"https://www.douyin.com/video/7647351006628813285","publishedAt":"2026-06-04T09:47:37+08:00","duration":"","isTop":0,"likes":59,"comments":14,"shares":5,"favorites":20,"tags":"毛躁头 头发毛躁怎么变得柔顺光滑 创作者中心 热门","musicTitle":"@爻月创作的原声","accountName":"萌萌兔","isMaint":false,"isL15":true,"targetComments":4},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7647350050083538338","type":"image_text","title":"悟了！原来这才是清透底妆的正确打开方式～ #新手\n化妆 #底妆 #不卡粉#变美","url":"https://www.douyin.com/video/7647350050083538338","publishedAt":"2026-06-04T09:43:55+08:00","duration":"","isTop":0,"likes":59,"comments":5,"shares":6,"favorites":44,"tags":"新手 底妆 不卡粉 变美","musicTitle":"@小米好物创作的原声","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":4}]},{"label":"500赞内","color":"#d84315","icon":"🟠","max":500,"vids":[{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7644140469627331577","type":"image_text","title":"有手就行 我看谁还不会护发～#热门 #护发 #发膜 #经验分享 #教程","url":"https://www.douyin.com/video/7644140469627331577","publishedAt":"2026-05-26T18:09:06+08:00","duration":"","isTop":0,"likes":123,"comments":0,"shares":8,"favorites":53,"tags":"热门 护发 发膜 经验分享 教程","musicTitle":"@秋白创作的原声","accountName":"呜呜酱","isMaint":true,"isL15":false,"targetComments":5},{"person":"朱一凡","account_name":"但愿人长久","account_id":"MS4wLjABAAAAn9SIvJsYK_ObKIh0iBFAYTm_XaBwDIKpqxHQvPacdp-s1uza8RxxpPMntywZl2ct","id":"7646976163777150400","type":"image_text","title":"底妆服帖的小技巧#底妆#奶油肌#白开水妆容#不卡粉底妆技巧#化妆品","url":"https://www.douyin.com/video/7646976163777150400","publishedAt":"2026-06-03T09:33:04+08:00","duration":"","isTop":0,"likes":202,"comments":24,"shares":35,"favorites":184,"tags":"底妆 奶油肌 白开水妆容 不卡粉底妆技巧 化妆品","musicTitle":"爆了爆了上热门","accountName":"但愿人长久","isMaint":false,"isL15":true,"targetComments":5},{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7645874597834155505","type":"video","title":"改善头发毛躁超温和妙招（纯享版） #创作者扶持计划 #护发养发 #变美小技巧 #头发毛躁怎么变得柔顺光滑#热门","url":"https://www.douyin.com/video/7645874597834155505","publishedAt":"2026-05-31T10:18:24+08:00","duration":"00:24","isTop":0,"likes":302,"comments":13,"shares":85,"favorites":265,"tags":"创作者扶持计划 护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":5}]},{"label":"1000赞内","color":"#c62828","icon":"🔴","max":1000,"vids":[{"person":"朱一凡","account_name":"呜呜酱","account_id":"MS4wLjABAAAA06gA4Z6g75DoBhx9-0N238uTJBcTVoRs3PIiJHtanbZq8B3skitt5EZVl_KCmF_5","id":"7645134330914498737","type":"video","title":"low成本养出绸缎发方法 速速码住！ #创作者扶持计划 #护发养发 #变美小技巧 #头发毛躁怎么变得柔顺光滑#热门","url":"https://www.douyin.com/video/7645134330914498737","publishedAt":"2026-05-29T10:25:47+08:00","duration":"00:23","isTop":0,"likes":878,"comments":45,"shares":285,"favorites":755,"tags":"创作者扶持计划 护发养发 变美小技巧 头发毛躁怎么变得柔顺光滑 热门","musicTitle":"@呜呜酱创作的原声","accountName":"呜呜酱","isMaint":false,"isL15":true,"targetComments":10}]},{"label":"1000赞以上","color":"#6a1b9a","icon":"🟣","max":null,"vids":[]}];
+  
+  function htmlEscape(str) {
+      return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+  }
+
+  // Render a specific tier
+  function renderTier(tierIndex) {
+      const tier = PAGE_DATA[tierIndex];
+      const tbody = document.querySelectorAll('.tier-table tbody')[tierIndex];
+      
+      // We render a max of 500 rows to prevent DOM bloat, or we can just render all since the JS loop is fast 
+      // and won't lock up the server. But let's limit to 300 to be safe for DOM.
+      const MAX_ROWS = 300;
+      const vidsToRender = tier.vids.slice(0, MAX_ROWS);
+      
+      let rowsHtml = '';
+      vidsToRender.forEach((v, i) => {
+          const pubDate = (v.publishedAt || '').slice(0, 10);
+          const safeTitle = htmlEscape(v.title || '');
+          const shortTitle = htmlEscape((v.title || '').slice(0, 40));
+          const rowClass = v.isMaint ? 'row-maint' : '';
+          const statusBadge = v.isMaint ? '<span class="badge-maint">⚠️ 待维护</span>' : '<span class="badge-ok">✅ 达标</span>';
+          const commentsHtml = v.comments + (v.isMaint ? ' <em>/' + v.targetComments + '</em>' : '');
+          
+          rowsHtml += '<tr class="' + rowClass + '"><td class="num">' + (i+1) + '</td><td>' + statusBadge + '</td><td>' + htmlEscape(v.accountName) + '</td><td><a href="' + (v.url || '#') + '" target="_blank" title="' + safeTitle + '">' + shortTitle + (v.title && v.title.length > 40 ? '...' : '') + '</a></td><td class="num">' + v.likes + '</td><td class="num">' + commentsHtml + '</td><td>' + pubDate + '</td></tr>';
+      });
+      
+      if (tier.vids.length > MAX_ROWS) {
+          rowsHtml += '<tr><td colspan="7" style="text-align:center;color:#666;">只显示前 ' + MAX_ROWS + ' 条数据，更多数据请查看全局面板或下载 Excel。</td></tr>';
+      }
+      
+      tbody.innerHTML = rowsHtml;
+  }
+
+  // Initialize all tiers
+  document.addEventListener('DOMContentLoaded', () => {
+      for (let i = 0; i < PAGE_DATA.length; i++) {
+          renderTier(i);
+      }
+  });
+</script>
+</body>
+</html>

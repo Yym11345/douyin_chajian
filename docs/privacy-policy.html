@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隐私政策 - 抖音数据看板</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+    h1 { font-size: 28px; color: #1a1a1a; margin-bottom: 8px; }
+    .updated { color: #888; font-size: 14px; margin-bottom: 32px; }
+    h2 { font-size: 18px; color: #1a1a1a; margin: 32px 0 12px; border-left: 4px solid #ff2d55; padding-left: 12px; }
+    p { margin-bottom: 12px; color: #555; }
+    ul { margin: 8px 0 12px 20px; color: #555; }
+    li { margin-bottom: 6px; }
+    .highlight {
+      background: #fff8f0;
+      border: 1px solid #ffe0b2;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight strong { color: #e65100; }
+    footer { text-align: center; margin-top: 48px; color: #aaa; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 抖音数据看板 · 隐私政策</h1>
+    <p class="updated">最后更新日期：2025 年 6 月 27 日</p>
+
+    <div class="highlight">
+      <strong>核心承诺：</strong>本插件不收集、不存储、不上传任何用户个人数据。所有数据仅保存在您本地浏览器的 IndexedDB 中，开发者无法以任何方式访问。
+    </div>
+
+    <h2>一、我们收集哪些数据？</h2>
+    <p>本插件<strong>不收集任何用户个人信息</strong>。插件在运行过程中，仅会拦截并在您本地浏览器中处理以下<strong>完全公开</strong>的内容数据：</p>
+    <ul>
+      <li>抖音创作者的公开昵称、粉丝数量</li>
+      <li>创作者发布的公开视频的标题、发布时间、点赞数、评论数、分享数、收藏数</li>
+    </ul>
+    <p>以上数据均为抖音平台对所有访客公开展示的内容，不涉及任何私密或敏感信息。</p>
+
+    <h2>二、数据存储在哪里？</h2>
+    <p>所有采集到的数据<strong>仅存储在您本人电脑的浏览器 IndexedDB（本地数据库）中</strong>。</p>
+    <ul>
+      <li>数据不会被上传至任何服务器</li>
+      <li>数据不会被发送给开发者或任何第三方</li>
+      <li>数据完全在您的本地设备上，由您完全掌控</li>
+      <li>卸载插件后，您可以在浏览器的开发者工具中手动清除 IndexedDB 数据</li>
+    </ul>
+
+    <h2>三、我们会共享您的数据吗？</h2>
+    <p><strong>绝对不会。</strong>本插件没有任何网络通信行为，不连接任何后端服务器，数据不会以任何形式与第三方共享。</p>
+
+    <h2>四、本插件请求哪些浏览器权限？</h2>
+    <ul>
+      <li><strong>activeTab</strong>：读取当前标签页的 URL，用于判断是否在抖音创作者主页</li>
+      <li><strong>storage / unlimitedStorage</strong>：在本地存储采集到的视频数据</li>
+      <li><strong>scripting</strong>：向抖音页面注入拦截脚本，用于监听网络请求</li>
+      <li><strong>downloads</strong>：支持将数据导出为 CSV 文件到您本地</li>
+      <li><strong>host_permissions (*.douyin.com)</strong>：仅在抖音域名下生效，不影响其他网站</li>
+    </ul>
+    <p>以上权限均为插件核心功能所必需，不超出最小权限原则。</p>
+
+    <h2>五、本插件会影响我的抖音账号安全吗？</h2>
+    <p>本插件不读取、不存储、不传输您的抖音登录凭证（Cookie、Token 等）。插件的数据采集完全基于您正常浏览页面时产生的公开 API 响应，不会模拟登录或执行任何账号操作。</p>
+
+    <h2>六、儿童隐私</h2>
+    <p>本插件面向成年用户，不专门针对 13 岁以下儿童设计，也不会有意收集儿童的任何个人信息。</p>
+
+    <h2>七、隐私政策变更</h2>
+    <p>如果本隐私政策发生变更，我们将在此页面更新"最后更新日期"。建议您定期查阅本页面。</p>
+
+    <h2>八、联系我们</h2>
+    <p>如您对本隐私政策有任何疑问，请通过 GitHub Issues 与我们联系：</p>
+    <p><a href="https://github.com/Yym11345/douyin_chajian/issues" target="_blank">https://github.com/Yym11345/douyin_chajian/issues</a></p>
+
+    <footer>
+      © 2025 抖音数据看板 · 本插件基于 MIT 协议开源
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# 浏览器私有配置文件
+private/
+
+# 私密数据文件
+账号信息.xlsx
+账号监控_人员分组.xlsx
+新建 XLSX 工作表.xlsx
+*.xlsx
+*.docx
+组织关系.txt
+软著申请源代码合并版.txt
+
+# 测试文件
+extension/test*.cjs
+extension/test*.png
+extension/b64/
+extension/docs/
+extension/dashboard_decoded.html
+extension/REVIEW_AND_FIX_PLAN.md
+extension/问题审查报告.md
+extension/test/
+
+# 打包文件
+*.zip
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.log
+desktop.ini
+
+# Node
+node_modules/

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王梦圆 组长看板 - 推广一部一组</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f0f2f5; color:#333; padding:40px; }
+h1 { font-size:28px; margin-bottom:4px; }
+h1 span { font-size:14px; font-weight:400; color:#9ca3af; margin-left:12px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0 24px; }
+.hero-card { display:flex; align-items:center; gap:16px; border-radius:14px; padding:20px 24px; box-shadow:0 4px 16px rgba(0,0,0,0.08); border:2px solid transparent; transition:transform 0.15s; }
+.hero-card:hover { transform:translateY(-2px); }
+.hero-icon { font-size:36px; line-height:1; }
+.hero-num { font-size:36px; font-weight:900; line-height:1.1; }
+.hero-lbl { font-size:13px; font-weight:600; margin-top:4px; }
+.hero-blue { background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%); border-color:#93c5fd; color:#1e3a8a; }
+.hero-red { background:linear-gradient(135deg,#fee2e2 0%,#fef2f2 100%); border-color:#fca5a5; color:#7f1d1d; }
+.hero-red .hero-num { color:#dc2626; }
+.hero-orange { background:linear-gradient(135deg,#ffedd5 0%,#fff7ed 100%); border-color:#fdba74; color:#7c2d12; }
+.hero-orange .hero-num { color:#ea580c; }
+.subtitle { color:#6b7280; font-size:13px; margin:0 0 8px; }
+table { width:100%; border-collapse:collapse; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.05); font-size:14px; }
+th { background:linear-gradient(135deg,#1a1a2e,#16213e); color:#fff; padding:14px 16px; text-align:left; font-weight:600; font-size:13px; }
+td { padding:12px 16px; border-bottom:1px solid #f3f4f6; }
+tr:hover td { background:#f9fafb; }
+.is-leader { background:#fef3c7 !important; font-weight:600; }
+a { text-decoration:none; font-weight:600; }
+a:hover { text-decoration:underline; }
+.role-pill { display:inline-block; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:700; margin-left:6px; }
+.role-1 { background:#d1fae5; color:#065f46; }
+.footer { margin-top:20px; font-size:13px; color:#9ca3af; text-align:center; }
+@media (max-width:1024px) { .hero-stats { grid-template-columns:1fr; } body{padding:20px;} }
+</style>
+</head>
+<body>
+<h1>👥 王梦圆 组长看板 <span>推广一部一组 · 组员: 4 人</span></h1>
+<div class="subtitle">下属 <strong>4</strong> 人 · 总账号 42 · 总视频 1351</div>
+<div class="hero-stats">
+    <div class="hero-card hero-blue">
+        <div class="hero-icon">📅</div>
+        <div class="hero-num">642</div>
+        <div class="hero-lbl">近15天 发布视频总数</div>
+    </div>
+    <div class="hero-card hero-red">
+        <div class="hero-icon">⚠️</div>
+        <div class="hero-num">114</div>
+        <div class="hero-lbl">⚠️ 近15天 待维护视频数</div>
+    </div>
+    <div class="hero-card hero-orange">
+        <div class="hero-icon">💬</div>
+        <div class="hero-num">135</div>
+        <div class="hero-lbl">💬 近15天 待评论总数</div>
+    </div>
+</div>
+<table class="sortable">
+    <thead><tr><th class="num">#</th><th>姓名</th><th class="num">账号数</th><th class="num">总视频</th><th class="num">总粉丝</th><th class="num">近15天发布</th><th class="num" style="color:#fca5a5;">⚠️待维护视频</th><th class="num" style="color:#fca5a5;">待评论数</th><th class="no-sort">看板</th></tr></thead>
+    <tbody>
+<tr >
+    <td>1</td>
+    <td><strong>张晨旭</strong></td>
+    <td>10</td>
+    <td>247</td>
+    <td>289</td>
+    <td>148</td>
+    <td style="color:#dc2626;font-weight:700;">40</td>
+    <td style="color:#f87171;font-weight:600;">46</td>
+    <td><a href="../person_dashboards/张晨旭.html" target="_blank" style="color:#2563eb;">查看看板 →</a></td>
+</tr>
+<tr class="is-leader">
+    <td>2</td>
+    <td><strong>王梦圆</strong> <span class="role-pill role-1">组长</span></td>
+    <td>8</td>
+    <td>339</td>
+    <td>292</td>
+    <td>93</td>
+    <td style="color:#dc2626;font-weight:700;">36</td>
+    <td style="color:#f87171;font-weight:600;">46</td>
+    <td><a href="../person_dashboards/王梦圆.html" target="_blank" style="color:#2563eb;">查看看板 →</a></td>
+</tr>
+<tr >
+    <td>3</td>
+    <td><strong>陈星羽</strong></td>
+    <td>8</td>
+    <td>361</td>
+    <td>175</td>
+    <td>115</td>
+    <td style="color:#dc2626;font-weight:700;">16</td>
+    <td style="color:#f87171;font-weight:600;">20</td>
+    <td><a href="../person_dashboards/陈星羽.html" target="_blank" style="color:#2563eb;">查看看板 →</a></td>
+</tr>
+<tr >
+    <td>4</td>
+    <td><strong>罗永乐</strong></td>
+    <td>10</td>
+    <td>243</td>
+    <td>2,330</td>
+    <td>159</td>
+    <td style="color:#dc2626;font-weight:700;">15</td>
+    <td style="color:#f87171;font-weight:600;">16</td>
+    <td><a href="../person_dashboards/罗永乐.html" target="_blank" style="color:#2563eb;">查看看板 →</a></td>
+</tr>
+<tr >
+    <td>5</td>
+    <td><strong>陈一诺</strong></td>
+    <td>6</td>
+    <td>161</td>
+    <td>71</td>
+    <td>127</td>
+    <td style="color:#dc2626;font-weight:700;">7</td>
+    <td style="color:#f87171;font-weight:600;">7</td>
+    <td><a href="../person_dashboards/陈一诺.html" target="_blank" style="color:#2563eb;">查看看板 →</a></td>
+</tr></tbody>
+</table>
+<div class="footer">数据更新: 2026/6/10 19:05:44 · 仅统计近15天内发布视频</div>
+</body>
+</html>

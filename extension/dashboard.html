@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>抖音账号总体监控看板</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+
+    /* ── Header ── */
+    .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 30px 40px; }
+    .header h1 { font-size: 26px; margin-bottom: 6px; }
+    .header p { color: #a0aec0; font-size: 13px; }
+    .header-actions { display: flex; gap: 10px; margin-top: 14px; }
+    .header-btn { padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: .2s; }
+    .btn-white { background: rgba(255,255,255,0.15); color: #fff; }
+    .btn-white:hover { background: rgba(255,255,255,0.25); }
+    .btn-danger { background: rgba(220,38,38,0.2); color: #fca5a5; border: 1px solid rgba(220,38,38,0.4); }
+    .btn-danger:hover { background: rgba(220,38,38,0.35); }
+
+    /* ── Tab Nav ── */
+    .tab-nav { background: #fff; border-bottom: 1px solid #e2e8f0; display: flex; padding: 0 40px; position: sticky; top: 0; z-index: 50; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .tab-btn { padding: 14px 18px; font-size: 14px; cursor: pointer; color: #718096; border-bottom: 2px solid transparent; transition: .2s; white-space: nowrap; background: none; border-left: none; border-right: none; border-top: none; }
+    .tab-btn:hover { color: #2d3748; }
+    .tab-btn.active { color: #3182ce; border-bottom-color: #3182ce; font-weight: 600; }
+
+    /* ── Stats Row ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; padding: 24px 40px; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 18px 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center; }
+    .stat-card .number { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+    .stat-card .label { font-size: 12px; color: #718096; margin-top: 4px; }
+    .stat-card .sub { font-size: 11px; color: #a0aec0; margin-top: 2px; }
+    .stat-card.red .number { color: #dc2626; }
+    .stat-card.red .label { color: #dc2626; }
+
+    /* ── Hero Alert Cards ── */
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0 40px 16px; }
+    .hero-card { display: flex; align-items: center; gap: 18px; border-radius: 14px; padding: 20px 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 2px solid transparent; }
+    .hero-icon { font-size: 38px; line-height: 1; }
+    .hero-num { font-size: 38px; font-weight: 900; line-height: 1.1; }
+    .hero-lbl { font-size: 13px; font-weight: 600; margin-top: 4px; }
+    .hero-blue { background: linear-gradient(135deg,#dbeafe,#eff6ff); border-color: #93c5fd; color: #1e3a8a; }
+    .hero-red { background: linear-gradient(135deg,#fee2e2,#fef2f2); border-color: #fca5a5; color: #7f1d1d; }
+    .hero-red .hero-num { color: #dc2626; }
+    .hero-orange { background: linear-gradient(135deg,#ffedd5,#fff7ed); border-color: #fdba74; color: #7c2d12; }
+    .hero-orange .hero-num { color: #ea580c; }
+
+    /* ── Tier Cards ── */
+    .tier-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 10px; padding: 0 40px 16px; }
+    .tier-card { border-radius: 10px; padding: 12px 8px; text-align: center; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.05); border-top: 3px solid #ccc; }
+    .tier-icon { font-size: 18px; }
+    .tier-count { font-size: 24px; font-weight: 800; line-height: 1.2; }
+    .tier-label { font-size: 11px; margin-top: 2px; }
+    .tier-sub { font-size: 10px; opacity: .7; margin-top: 3px; color: #666; }
+
+    /* ── Content ── */
+    .content { padding: 0 40px 40px; max-width: 1600px; margin: 0 auto; }
+    .section { margin-bottom: 24px; }
+    .section-title { font-size: 17px; font-weight: 600; margin-bottom: 14px; color: #2d3748; display: flex; align-items: center; gap: 8px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; }
+    .card-header { padding: 14px 18px; border-bottom: 1px solid #edf2f7; font-weight: 600; font-size: 14px; color: #2d3748; display: flex; align-items: center; gap: 8px; }
+    .card-body { padding: 18px; }
+
+    /* ── Distribution Lists (替换 Chart.js) ── */
+    .dist-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 13px; }
+    .dist-label { width: 90px; color: #4a5568; flex-shrink: 0; font-size: 12px; }
+    .dist-bar { flex: 1; height: 14px; background: #edf2f7; border-radius: 7px; overflow: hidden; min-width: 60px; }
+    .dist-fill { height: 100%; border-radius: 7px; transition: width .25s ease; }
+    .dist-count { width: 40px; text-align: right; color: #2d3748; font-weight: 600; font-size: 12px; }
+    .type-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; margin: 4px 4px 4px 0; background: #f7fafc; border: 1px solid #e2e8f0; }
+    .type-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .rank-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13px; }
+    .rank-bar-cell { flex: 1; height: 12px; background: #edf2f7; border-radius: 6px; overflow: hidden; }
+    .rank-bar-fill { height: 100%; background: linear-gradient(90deg, #4299e1, #3182ce); border-radius: 6px; }
+    .rank-name { width: 130px; font-size: 12px; color: #2d3748; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 0; }
+    .rank-num { width: 60px; text-align: right; font-weight: 600; color: #4a5568; font-size: 12px; flex-shrink: 0; }
+
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { background: #f7fafc; padding: 10px 12px; text-align: left; font-weight: 600; color: #4a5568; border-bottom: 2px solid #e2e8f0; white-space: nowrap; cursor: pointer; }
+    th:hover { background: #edf2f7; }
+    td { padding: 9px 12px; border-bottom: 1px solid #edf2f7; vertical-align: middle; }
+    tr:hover td { background: #f7fafc; }
+    tr.row-maint td { background: #fef2f2; }
+    tr.row-maint:hover td { background: #fee2e2; }
+    tr.row-maint td.num { color: #dc2626; font-weight: 700; }
+    .rank-num { display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; font-size: 12px; font-weight: 700; background: #e2e8f0; color: #4a5568; }
+    .rank-1 { background: #f6c23e; color: #fff; }
+    .rank-2 { background: #a0aec0; color: #fff; }
+    .rank-3 { background: #ed8936; color: #fff; }
+    .badge-maint { display: inline-block; background: #dc2626; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    .badge-ok { display: inline-block; background: #d1fae5; color: #065f46; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+    a { color: #3182ce; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Insight ── */
+    .insight-box { background: linear-gradient(135deg, #fefcbf, #fef9e7); border-left: 4px solid #d69e2e; padding: 16px 20px; border-radius: 8px; font-size: 14px; line-height: 2; }
+    .insight-box strong { color: #744210; }
+
+    /* ── Tag Cloud ── */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-item { background: #ebf4ff; color: #3182ce; padding: 5px 12px; border-radius: 16px; font-size: 13px; transition: transform .15s; cursor: default; }
+    .tag-item:hover { transform: scale(1.08); background: #bee3f8; }
+
+    /* ── Panels ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── Tier Panel ── */
+    .tier-panel { border-radius: 10px; padding: 10px 16px; margin-bottom: 10px; border: 1px solid #e5e7eb; background: #fff; }
+    .tier-panel-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .tier-pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .tier-pill-maint { background: #ffcdd2; color: #b71c1c; }
+    .tier-pill-total { background: rgba(0,0,0,0.05); color: #6b7280; }
+
+    /* ── Account Detail ── */
+    .detail-header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; padding: 24px 40px; display: flex; align-items: center; gap: 20px; }
+    .detail-avatar { width: 72px; height: 72px; border-radius: 50%; border: 3px solid #3182ce; object-fit: cover; flex-shrink: 0; }
+    .detail-name { font-size: 22px; font-weight: 800; }
+    .detail-sig { color: #a0aec0; font-size: 13px; margin-top: 4px; }
+
+    /* ── Misc ── */
+    .empty-state { text-align: center; padding: 80px 20px; color: #a0aec0; }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .hidden { display: none; }
+    input[type=text] { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 7px 12px; font-size: 13px; outline: none; color: #2d3748; }
+    input[type=text]:focus { border-color: #3182ce; }
+    select { background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 7px 10px; font-size: 13px; color: #2d3748; }
+
+    @media (max-width: 1024px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .content, .stats-row, .hero-stats, .tier-row { padding-left: 16px; padding-right: 16px; }
+      .header { padding: 20px 16px; }
+      .tab-nav { padding: 0 16px; overflow-x: auto; }
+      .detail-header { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>📊 抖音账号总体监控看板</h1>
+  <p id="header-desc">正在加载数据...</p>
+  <div class="header-actions">
+    <button class="header-btn btn-white" id="btnExportAll">⬇️ 导出全量 CSV</button>
+    <button class="header-btn btn-danger" id="btnClear">🗑️ 清空数据库</button>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tab-nav">
+  <button class="tab-btn active" data-panel="global">📊 全局总览</button>
+  <button class="tab-btn" data-panel="maint">⚠️ 维护看板</button>
+  <button class="tab-btn" data-panel="accounts">👥 账号列表</button>
+  <button class="tab-btn" data-panel="ranking">🏆 视频排行</button>
+  <button class="tab-btn" data-panel="batch" style="color:#d97706"><span style="margin-right:4px">🚀</span> 批量采集</button>
+  <button class="tab-btn" id="tab-detail" data-panel="detail" style="display:none">👤 账号详情</button>
+</div>
+
+<!-- ── 全局总览 ── -->
+<div class="panel active" id="panel-global">
+  <div id="global-content">
+    <div class="empty-state"><div class="empty-icon">📱</div><p>暂无数据，请先在抖音创作者主页进行采集。</p></div>
+  </div>
+</div>
+
+<!-- ── 维护看板 ── -->
+<div class="panel" id="panel-maint">
+  <div id="maint-content">
+    <div class="empty-state"><div class="empty-icon">✔️</div><p>暂无数据</p></div>
+  </div>
+</div>
+
+<!-- ── 账号列表 ── -->
+<div class="panel" id="panel-accounts">
+  <div class="stats-row" style="padding-top:20px">
+  </div>
+  <div class="content">
+    <div class="section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="section-title" style="margin-bottom:0">👥 所有账号数据总表</div>
+        <input type="text" id="accountSearch" placeholder="搜索账号名..." style="width:200px">
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr>
+            <th>#</th>
+            <th>账号名称</th>
+            <th>粉丝数 ↓</th>
+            <th>采集视频</th>
+            <th>总点赞</th>
+            <th>总评论</th>
+            <th>互动率</th>
+            <th>操作</th>
+          </tr></thead>
+          <tbody id="accounts-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 视频排行 ── -->
+<div class="panel" id="panel-ranking">
+  <div class="content" style="padding-top:24px">
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px">
+      <div class="section-title" style="margin-bottom:0">🏆 全局视频排行榜（Top 200）</div>
+      <select id="rankSortBy">
+        <option value="likes">按点赞</option>
+        <option value="comments">按评论</option>
+        <option value="shares">按分享</option>
+        <option value="publishedAt">按最新</option>
+      </select>
+      <input type="text" id="rankSearch" placeholder="搜索标题..." style="width:220px;margin-left:auto">
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr>
+          <th>#</th><th>账号</th><th>标题</th><th>类型</th>
+          <th>发布日期</th><th>点赞</th><th>评论</th><th>分享</th>
+        </tr></thead>
+        <tbody id="rank-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 账号详情 ── -->
+<div class="panel" id="panel-detail">
+  <div id="detail-content"></div>
+</div>
+<!-- ── 批量采集 ── -->
+<div class="panel" id="panel-batch">
+  <div class="content" style="padding-top:24px">
+    <div class="grid-2">
+      <!-- Left: Input Area -->
+      <div class="card" style="display:flex;flex-direction:column">
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+          <span>📋 粘贴抖音主页链接（多个链接请用回车换行）</span>
+
+        </div>
+        <div class="card-body" style="flex:1;display:flex;flex-direction:column;padding-bottom:16px">
+          <textarea id="batchUrls" style="flex:1;width:100%;min-height:200px;border:1px solid #e2e8f0;border-radius:6px;padding:12px;font-family:monospace;font-size:13px;resize:vertical;outline:none" placeholder="例如：&#10;https://www.douyin.com/user/MS4wLjABAAAA...&#10;https://www.douyin.com/user/MS4wLjABAAAA..."></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+            <span style="font-size:13px;color:#718096" id="batchUrlCount">共 0 个链接</span>
+            <div style="display:flex;gap:12px;align-items:center">
+              <button id="btnStartBatch" style="background:#3182ce;color:#fff;border:none;padding:8px 24px;border-radius:6px;font-weight:600;cursor:pointer">▶ 顺序开始采集</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Progress Area -->
+      <div class="card">
+        <div class="card-header" style="display:flex;justify-content:space-between">
+          <span>🚀 采集进度</span>
+          <button id="btnStopBatch" style="background:#e53e3e;color:#fff;border:none;padding:4px 12px;border-radius:4px;font-size:12px;cursor:pointer;display:none">🛑 停止任务</button>
+        </div>
+        <div class="card-body">
+          <div style="display:flex;gap:16px;margin-bottom:20px">
+            <div style="flex:1;background:#f7fafc;padding:12px;border-radius:8px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:#2d3748" id="batchTotal">0</div>
+              <div style="font-size:12px;color:#718096">总任务</div>
+            </div>
+            <div style="flex:1;background:#ebf4ff;padding:12px;border-radius:8px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:#3182ce" id="batchActive">0</div>
+              <div style="font-size:12px;color:#718096">采集中</div>
+            </div>
+            <div style="flex:1;background:#f0fff4;padding:12px;border-radius:8px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:#38a169" id="batchDone">0</div>
+              <div style="font-size:12px;color:#718096">已完成</div>
+            </div>
+          </div>
+          
+          <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:#4a5568">活动窗口（实时状态）：</div>
+          <div id="batchActiveList" style="min-height:120px;border:1px solid #edf2f7;border-radius:6px;padding:8px;background:#f8fafc;font-size:12px;color:#4a5568;overflow-y:auto;max-height:200px">
+            <div style="color:#a0aec0;text-align:center;padding-top:40px">暂无活动任务</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

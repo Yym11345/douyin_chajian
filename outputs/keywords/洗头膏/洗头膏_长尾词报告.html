@@ -1,0 +1,3168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>${coreKeyword} - 长尾词挖掘报告</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; padding: 20px; background-color: #f5f5f7; color: #333; }
+        h1 { text-align: center; color: #1a1a1a; margin-bottom: 5px; }
+        .header-meta { text-align: center; color: #666; margin-bottom: 30px; font-size: 0.95em; }
+        
+        /* Grid Layout for Boxes */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Individual Search Box */
+        .search-box {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eaeaea;
+        }
+        
+        .box-header {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .box-header .count {
+            font-size: 0.8em;
+            background: #eef2f5;
+            padding: 3px 8px;
+            border-radius: 12px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .word-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .word-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            align-items: center;
+        }
+        .word-item:last-child {
+            border-bottom: none;
+        }
+        .word-item:hover {
+            background-color: #fcfcfd;
+        }
+
+        .rank-badge {
+            width: 24px;
+            height: 24px;
+            background: #f0f4f8;
+            color: #0066cc;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Highlight top 3 ranks */
+        .rank-badge[data-rank="1"] { background: #ffebee; color: #d32f2f; }
+        .rank-badge[data-rank="2"] { background: #fff3e0; color: #ef6c00; }
+        .rank-badge[data-rank="3"] { background: #f1f8e9; color: #33691e; }
+
+        .suggestion {
+            font-size: 0.95em;
+            color: #333;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 "洗头膏" 专属长尾词挖掘报告</h1>
+    <div class="header-meta">
+        共挖掘 <strong>51</strong> 个触发词，合计 <strong>510</strong> 个排名长尾词 | 导出时间：2026/6/11 13:35:02
+    </div>
+    
+    <div class="grid-container">
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沙宣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏rnw</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏coco</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏可以洗手吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏男士去屑止痒控油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏加什么可以祛痘</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏蓬松控油持久留香女</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏按压头弹不出来</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 0</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏去屑止痒控油蓬松留香</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏08</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏0去油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏0.01</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏0添加男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏0硅油康如</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏vans</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏0+1</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏0YAV</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 1</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏100年润发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏160g可以带上火车</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏100ml够用多久</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏100ml可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏160g可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏10克大概挤多少</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏100毫升能用多久</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏100年</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏100ml有多少参照物</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏13合一</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 2</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏2000g能带上高铁吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏200ml可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏26合一</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏24小时香味奶香味</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏2048</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏2024新款</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏2000块钱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏20元</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏240毫升能带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏230ml能带上高铁吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 3</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏3个字</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏350g是多少毫升</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏37</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏36拼</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏300ml多大</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏30元推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏3c标志怎么查</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏3</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏3年保质期多久算临期</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏360克粉色瓶子</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 4</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏乔马龙</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏4.9</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏480毫升可以带上火车吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏400ml是多少g</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏49块</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏收纳箱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏400ml能用多长时间</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏试用装</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏400元</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头液</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 5</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏500g是多少ml</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏500ml能上地铁吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏500毫升是多少斤</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏5合一测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏500毫升可以上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏5g是多少</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏5块</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏500ml有多少</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏500ml是多大</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏500毫升可以带上高铁吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 6</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏天淑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏600ml可以带洗衣液吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏69.9</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">黑发洗头膏真的有用吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏60ml能上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏60元以内的推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏60毫升多大</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏618</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏618g是多少毫升</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏600g可以带上高铁吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 7</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏75元</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗发水750毫升</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏750ml等于多少克</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏77的按压头断了怎么办</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏72年</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏750ml可以带吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏750ml可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏7天</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏750ml可以带上高铁吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏7天蓬松</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 8</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏8minute</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏800ml多少l</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏8MINUTES</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏800ml能带吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏8g</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏80年代</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏80后</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏800毫升能放哪里</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏弹动8minute</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏8minute人参</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 9</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏9</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏99.9</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏900ml</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏9-15岁</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏92</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏90年代</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏99一瓶不贵吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏90元</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏99持久留香</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏9合一表情包</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 a</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏按压瓶盖打不开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏不能有的成分</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏按压口怎么开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏按压瓶怎么打开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏按压头工作原理</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏按压泵怎么收回去</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏按压原理</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏按压式外带不方便</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏按压式挤不出来</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏不用了可以做什么</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 b</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏不能含哪些东西</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏避坑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏被偷放荧光剂后续</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏保质期一般几年</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏泵头怎么拧开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏不能有的成分</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏保质期最多多少年</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏不含什么的好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏白发变黑发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏拔不上来是怎么回事</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 c</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏从夯到拉女士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏冲不干净会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏搓澡</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏超市好用的洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏长头发推荐前十名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏擦汽车玻璃</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏超市</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏出门怎么携带</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏吃嘴里怎么办</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏搓不出泡沫怎么回事</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 d</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏大桶装</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏的压头怎么打开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏当沐浴露会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏的英语怎么说</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏的盖怎么开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏掉头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏二硫化硒洗剂</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏当润滑油会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏对头发有害吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏的保质期一般是多久</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 e</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏大桶装</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏二氧化硒可以长期使用吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏额头长痘</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏二硫化硒有什么副作用</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏儿童脱发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏二硫化硒好用吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏二合一女士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏儿童洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏二硫化硒拧不开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏二硫化硒真品</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 f</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏防脱发推荐前十名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏防脱发育发胖东来</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏分装便携</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏发之食谱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏放脱毛膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏防脱发育发老牌子</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏放多了会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏防脱发男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏蜂花测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏分装妙招</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 g</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏干枯毛躁修复第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏过敏有哪些症状</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏广告词</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏干洗头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏盖怎么打开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏跟洗发水的区别</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏过敏图片</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏过敏起疙瘩很痒怎么办</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏过期了还能用吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 h</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏护发素套装推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏韩国</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏和沐浴露哪个洗衣服好用</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏和沐浴露推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏过期了还能用吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏盖子弹不出来怎么办</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏换着用好吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏话术</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏和沐浴露可以托运吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 i</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏潘婷</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏夏伯雅莲</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏起泡</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏inn</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏iface</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏inzo</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏hygiane</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏怎么选</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 j</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏加盐有什么好处</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏经常换好还是只用一种好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏可以带上火车吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏进眼睛里很疼有红血丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏可以带上高铁吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏力士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏酒店</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏姜王</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏极方</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏挤压式的怎么打开</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 k</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏可以用什么代替</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏控油第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏可以洗内裤吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏可以带上火车吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏卡扣固定扣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏可以一直用一样的吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏可以润滑吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏控油推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏可以过安检吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏可以刷牙吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 l</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏里面含有什么不能用</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏可以带上高铁吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏拉芳</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏林肯</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏力士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏经常换好还是只用一种好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏可以刷医保吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏里含有什么容易脱发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏里放阿莫西林会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏老牌子</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 m</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沐浴露洗面奶三合一男士测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏沐浴露套装持久留香男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏沐浴露可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏沐浴露推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏沐浴露套装男士天花板</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏沐浴露能带上火车吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏沐浴露能上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏沐浴露套装推荐第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏沐浴露可以托运吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 n</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏能不能洗衣服</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏能不能带上火车</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏能不能当沐浴露</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏能吃吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏能不能洗脸</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏能洗锅吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏能去衣服上的油渍吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏能洗澡用吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏能把白发洗黑吗</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 o</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏能洗衣服吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沐浴露可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏沐浴露排行榜第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏欧莱雅全部</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏欧莱雅测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏欧莱雅洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏哪有热的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏欧莱雅200ml</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏欧莱雅金色</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 p</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏潘婷</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沙宣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏蓬松控油学生真实测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏配方</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏排名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏蓬松推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏评价怎么写</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏瓶子可以回收吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏蓬松控油防脱发持久留香女</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 q</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏潘婷</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沙宣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏去螨虫排名第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏去屑推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏去油蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏起头皮屑怎么办</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏四个字牌子</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏去油原理</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏去油男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏全家用</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 r</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏潘婷</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沙宣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏柔顺润滑持久留香</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏如果没洗干净会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏柔顺改善毛躁</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏染发有什么危害吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏揉不出泡沫</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏热卖榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏弱酸还是弱碱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏如何拧开</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 s</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏潘婷</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏沙宣</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏排行榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏是洗发水吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏生发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏手工</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏是怎么制造出来的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏闪钻</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏是什么</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 t</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏天淑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏推荐男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏按压头弹不出来</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏托运要求</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏拖地干净吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏添加什么不好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏头皮发痒</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐男士测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏塌房</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏拖地有什么好处</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 u</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏治脱发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏央视</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏推荐测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏toci</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏UNNY</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏u2</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐前十名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏T</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏u</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 v</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐前十名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏vs的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏ve</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏保质期最多多少年</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏推荐男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏推荐测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏vs是什么牌子</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏T</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">vniess洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏toci</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 w</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏学生党</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏滋源</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏英语怎么说</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏小孩</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏文案短句干净</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏药物</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏油性头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏误食会怎么样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏薇姿</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏网红推荐</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 x</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏洗脸会怎样</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏小孩</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏学生党</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏洗衣服可以吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏小孩洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏洗了头皮全是头皮屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏洗澡</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏修复受损干枯毛躁</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏需要经常换品牌吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏香味</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 y</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏增发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏有没有保质期</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏源头工厂</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏洗衣服可以吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏月桂醇聚醚硫酸酯好不好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏英语怎么说</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏油性头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏有毒吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏牙膏可以带上飞机吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏一般保质期是几年</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 z</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏怎么打出泡沫</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏植物</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏增发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏怎么是热的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏洗衣服可以吗</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏怎么制作</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏制作方法</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏自己熬</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏止痒去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏怎么拧才能弹起来</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 区别</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏和洗发水区别</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏区别</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏阿道夫</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">控油去屑蓬松洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏跟洗发水区别洗头发用什么</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 哪个好</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐前十名最好用的洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏哪个好男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏哪个好一点去屑的要香一点的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏哪个好去油去头皮屑蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏哪个好用安全</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏哪个好用推荐一下啊</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏哪个品牌比较好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏哪个好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏哪个好用蓬松控油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏哪个好润发护发</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 多少钱</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">维安洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏多少钱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏多少钱一瓶？[比心][比心][比心][比心]</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏多少钱一瓶算正常</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏多少钱一包</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏多少钱一瓶去义乌拿货</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏多少钱一瓶正品好用</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 怎么</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏怎么熬制</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏怎么做出来的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏怎么打开泵头</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏怎么看配料表</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏怎么把泵头拧回去</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏怎么增稠</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏怎么开盖</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏怎么洗头才没有头皮屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏怎么拧开</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏怎么做起泡胶</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 排行榜</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏排行榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏男士排行榜第一</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏热卖榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏排行榜前十名315</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏排行榜前十名无硅油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏排行榜前十名防脱发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏排行榜怎么做</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏排行榜第一名正品直播</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏排行榜前十名粉色瓶子</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 推荐</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐前十名最好用的洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏推荐控油去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏推荐去屑控油蓬松留香持久</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏推荐去屑干枯毛躁</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏推荐男士大瓶</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏推荐改善头皮去屑控油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏推荐男士去屑止痒去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐健康</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏推荐男士老爸评测</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏推荐男女都能用</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏 测评</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏真实测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏测评男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏测评红榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏测评红蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏测评真实推荐长头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏测评真实推荐学生</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏测评中性偏油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏测评学生党负担得起</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏测评真实推荐第一名</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏测评真实推荐育发</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏区别</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏区别</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏和洗发水区别</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏阿道夫</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">控油去屑蓬松洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏测评</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏哪个好</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐前十名最好用的洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏哪个品牌比较好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏哪个好</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏哪个好闻</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏哪个好用去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏哪个好去油去头皮屑蓬松</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏哪个好也便宜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏哪个好呀没有添加剂的</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏哪个好用香味大不伤皮肤.</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏哪个好用蓬松控油</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏多少钱</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">维安洗头膏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏多少钱</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏多少钱一瓶</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏多少钱一瓶？[比心][比心][比心][比心]</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏多少钱一瓶去义乌拿货</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏多少钱算贵</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏海飞丝</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏欧莱雅</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏阿道夫</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏怎么</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏怎么出很多泡泡</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏怎么带走</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏怎么做成肥皂</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏怎么弄掉</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏怎么描述</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏怎么才能不漏</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏怎么封住用保鲜膜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏怎么去除头皮屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏怎么洗头发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏怎么申请仅退款</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏排行榜</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏排行榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏男士排行榜第一</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏推荐</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏热卖榜</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏排行榜第一名去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏排行榜前十名无硅油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏排行榜怎么做</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏排行榜2026</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏排行榜第一名男士推荐品牌</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏排行榜前十名防脱发</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏推荐</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏推荐前十名最好用的洗发水</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏推荐去屑控油蓬松测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏推荐健康</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏推荐不刺激头皮</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏推荐生发</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏推荐留香持久测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏推荐男士去屑止痒去屑</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏推荐男士平价</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏推荐100元左右</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏推荐香味</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="search-box">
+            <div class="box-header">
+                <span>触发词：<span style="color:#0066cc;">洗头膏测评</span></span>
+                <span class="count">10 个</span>
+            </div>
+            <ul class="word-list">
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="1">1</span>
+                    <span class="suggestion">洗头膏测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="2">2</span>
+                    <span class="suggestion">洗头膏真实测评</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="3">3</span>
+                    <span class="suggestion">洗头膏测评男士</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="4">4</span>
+                    <span class="suggestion">洗头膏测评植物</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="5">5</span>
+                    <span class="suggestion">洗头膏测评真实推荐控油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="6">6</span>
+                    <span class="suggestion">洗头膏测评红黑榜学生党</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="7">7</span>
+                    <span class="suggestion">洗头膏测评中性偏油</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="8">8</span>
+                    <span class="suggestion">洗头膏测评美白</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="9">9</span>
+                    <span class="suggestion">洗头膏测评漂染</span>
+                </li>
+                
+                <li class="word-item">
+                    <span class="rank-badge" data-rank="10">10</span>
+                    <span class="suggestion">洗头膏测评便宜</span>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>
