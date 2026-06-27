@@ -68,9 +68,14 @@ async function upsertAccount(data) {
 }
 
 async function upsertVideo(data) {
-  if (!data || !data.id) {
-    console.error('[DouyinSkill] upsertVideo: invalid data.id', data);
-    return;
+  // ── 防止脏数据入库：视频ID或账号ID为空时直接丢弃 ──
+  if (!data || !data.id || data.id === 'null' || data.id === 'undefined') {
+    console.warn('[DouyinSkill] upsertVideo: 丢弃无效视频ID', data?.id);
+    return false;
+  }
+  if (!data.account_id || data.account_id === 'null' || data.account_id === 'undefined') {
+    console.warn('[DouyinSkill] upsertVideo: 丢弃无账号ID的视频', data.id);
+    return false;
   }
   const db = await getDB();
   if (!db) { console.error('[DouyinSkill] upsertVideo: db is undefined'); return; }
@@ -174,7 +179,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const itemAuthor = item.author || {};
       const itemSecUid = itemAuthor.sec_uid || item.sec_uid || null;
       const videoId    = item.aweme_id || item.id || item.vid || null;
-      if (!videoId) return Promise.resolve();
+
+      // ── 过滤脏数据：视频ID或账号ID为空时跳过 ──
+      if (!videoId || videoId === 'null') return Promise.resolve(false);
+      if (!itemSecUid || itemSecUid === 'null') {
+        console.warn('[DouyinSkill] 跳过无账号ID的视频:', videoId);
+        return Promise.resolve(false);
+      }
 
       const videoData = {
         id: videoId,
